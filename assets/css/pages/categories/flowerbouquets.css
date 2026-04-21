@@ -1,0 +1,391 @@
+﻿
+        :root {
+            --primary-pink: #f8d7e4;
+            --primary-green: #d8e9d6;
+            --primary-beige: #f5f0e6;
+            --gold: #d4af37;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f9f9f9;
+        }
+        
+        .gold-text {
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .product-card img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
+            transform: scale(1.0);
+        }
+        
+        .product-card .image-container {
+            position: relative;
+            width: 100%;
+            height: 384px; /* نفس ارتفاع صفحة التفاصيل */
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+        
+        /* تحسينات للشاشات الصغيرة */
+        @media (max-width: 640px) {
+            .product-card .image-container {
+                height: 280px; /* ارتفاع أطول للشاشات الصغيرة مع عمودين */
+            }
+            
+            .product-card {
+                font-size: 0.875rem; /* حجم خط أصغر للشاشات الصغيرة */
+            }
+            
+            .product-card h3 {
+                font-size: 1rem; /* حجم عنوان أصغر */
+                line-height: 1.2;
+            }
+            
+            .product-card .price {
+                font-size: 0.9rem; /* حجم السعر أصغر */
+            }
+            
+            .product-card .location {
+                font-size: 0.8rem; /* حجم الموقع أصغر */
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+            .product-card .image-container {
+                height: 280px; /* ارتفاع للشاشات المتوسطة */
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .product-card .image-container {
+                height: 320px; /* ارتفاع للشاشات الكبيرة */
+            }
+        }
+        
+        /* الشاشات الكبيرة تحتفظ بالارتفاع الأصلي 384px */
+        
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .category-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        
+        /* تحسين القائمة الرئيسية للهاتف المحمول */
+        #mobile-menu {
+            /* منع التمرير في الصفحة الرئيسية عند فتح القائمة */
+            overscroll-behavior: contain;
+            /* تحسين التمرير باللمس */
+            -webkit-overflow-scrolling: touch;
+            /* إخفاء شريط التمرير */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        #mobile-menu::-webkit-scrollbar {
+            display: none;
+        }
+        
+        #mobile-menu > div {
+            /* تحديد ارتفاع أقصى للقائمة */
+            max-height: 80vh;
+            /* تفعيل التمرير العمودي */
+            overflow-y: auto;
+            /* منع التمرير الأفقي */
+            overflow-x: hidden;
+        }
+        
+        /* تحسين التمرير على الأجهزة المحمولة */
+        @media (max-width: 768px) {
+            #mobile-menu > div {
+                /* تحسين التمرير على الأجهزة المحمولة */
+                -webkit-overflow-scrolling: touch;
+                /* منع التمرير في الصفحة الرئيسية */
+                overscroll-behavior: contain;
+                /* تحسين الأداء */
+                will-change: scroll-position;
+            }
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .favorite-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .favorite-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .notification {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* تحسين التمرير السلس */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        
+        @media (max-width: 768px) {
+            html {
+                scroll-padding-top: 70px;
+            }
+        }
+
+        /* Filter Styles - مطابق لصفحة الكوشات */
+        .filter-section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .filter-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+
+
+        .clear-filters-btn {
+            background: #ef4444;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-filters-btn:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
+
+
+
+        .active-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .active-filter-tag {
+            background: #3b82f6;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .remove-filter {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+        }
+
+        /* Simple Filter Buttons Styles */
+        .multi-filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            padding: 10px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            color: #374151;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .filter-btn:hover {
+            border-color: #d4af37;
+            background: #fefbf0;
+            transform: translateY(-1px);
+        }
+
+        .filter-btn.active {
+            background: #d4af37;
+            border-color: #d4af37;
+            color: white;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+        }
+
+        .filter-btn.active:hover {
+            background: #b8941f;
+            border-color: #b8941f;
+        }
+
+        /* إخفاء شريط التمرير للإعلانات المميزة */
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;  /* Safari and Chrome */
+        }
+
+        /* تحسين عرض الإعلانات المميزة */
+        #featured-ads-container {
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+        }
+
+        #featured-ads-container > div {
+            transition: all 0.3s ease;
+            scroll-snap-align: start;
+        }
+
+        #featured-ads-container > div:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 640px) {
+            .filter-btn {
+                min-width: 100px;
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+        }
+
+        /* Toggle button styles */
+        .toggle-filters-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #374151;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .toggle-filters-btn:hover {
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+
+
+        .remove-tag {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        .cities-search-container {
+            padding: 8px;
+        }
+
+        .cities-search-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .cities-search-input:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+        /* Slider Controls */
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: none; width: 32px; height: 32px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; }
+        .slider-prev { right: 8px; }
+        .slider-next { left: 8px; }
+        .slider-dots { position: absolute; bottom: 8px; left: 0; right: 0; display: flex; gap: 6px; justify-content: center; z-index: 10; }
+        .slider-dot { width: 6px; height: 6px; border-radius: 9999px; background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.1); padding: 0; }
+        .slider-dot.active { background: #d4af37; }
+    

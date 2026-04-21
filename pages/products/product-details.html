@@ -1,0 +1,1643 @@
+﻿<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H3XBCDY4W0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-H3XBCDY4W0');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1994970196400389"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج - زِينَة</title>
+    <meta name="description" content="تفاصيل المنتج - عرض شامل للمنتج مع الصور والمعلومات والاتصال">
+    <meta name="title" content="تفاصيل المنتج - زِينَة">
+    <link rel="canonical" href="https://zeinaevents.com/pages/products/product-details.html">
+    <link rel="icon" type="image/png" href="../../assets/images/zeina.jpeg">
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "تفاصيل المنتج",
+      "description": "تفاصيل المنتج - عرض شامل للمنتج مع الصور والمعلومات والاتصال",
+      "url": "https://zeinaevents.com/pages/products/product-details.html",
+      "image": "../../assets/images/zeina.jpeg",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Zeina Events",
+        "url": "https://zeinaevents.com"
+      }
+    }
+    </script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" as="script">
+    <link rel="preload" href="../../js/config/supabase-config.js?v=2025-08-22-1" as="script">
+    <link rel="preload" href="../../js/services/product-service.js?v=2025-08-22-1" as="script">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../../js/config/supabase-config.js?v=2025-08-22-1"></script>
+    <script src="../../js/services/product-service.js?v=2025-08-22-1"></script>
+    <script src="../../js/services/auth-service.js?v=2025-08-22-1"></script>
+    <script src="../../js/utils/common-utils.js?v=2025-08-22-1"></script>
+    <script src="../../js/features/governorate-filter.js?v=2025-08-22-1"></script>
+    <script src="../../js/features/enhanced-auto-slideshow.js?v=2025-08-22-1" defer></script>
+    <script src="../../js/services/advertising-service.js?v=2025-08-22-1"></script>
+
+    <style>
+        :root {
+            --primary-pink: #f8d7e4;
+            --primary-green: #d8e9d6;
+            --primary-beige: #f5f0e6;
+            --gold: #d4af37;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f9f9f9;
+        }
+        
+        .gold-border {
+            border: 1px solid var(--gold);
+        }
+        
+        .gold-text {
+            color: var(--gold);
+        }
+        
+        .product-image {
+            transition: transform 0.3s ease;
+        }
+        
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .product-image {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        
+        .image-gallery img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        
+        .contact-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+        
+        .facebook-btn {
+            background: linear-gradient(135deg, #1877F2 0%, #0D6EFD 100%);
+        }
+        
+        .instagram-btn {
+            background: linear-gradient(135deg, #E4405F 0%, #C13584 100%);
+        }
+        
+        /* Favorite Button Styles */
+        .favorite-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .favorite-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Recommended Products Styles */
+        #recommended-products-grid {
+            scrollbar-width: thin;
+            scrollbar-color: #d4af37 #f3f4f6;
+        }
+        
+        #recommended-products-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        #recommended-products-grid::-webkit-scrollbar-track {
+            background: #f3f4f6;
+        }
+        
+        #recommended-products-grid::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
+        }
+        
+        #recommended-products-grid::-webkit-scrollbar-thumb:hover {
+            background: #b8941f;
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .favorite-btn.active svg {
+            color: #ec4899;
+            fill: currentColor;
+        }
+        
+        .favorite-btn.active {
+            background-color: #fdf2f8;
+            border-color: #ec4899;
+        }
+        
+        .image-gallery {
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) #f1f1f1;
+        }
+        
+        .image-gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .image-gallery::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .image-gallery::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 3px;
+        }
+        
+        .image-gallery::-webkit-scrollbar-thumb:hover {
+            background: #b8941f;
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-message {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+        
+        .btn-modal-primary {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-modal-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-modal-secondary {
+            background: transparent;
+            color: #6b7280;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            border: 2px solid #d1d5db;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-modal-secondary:hover {
+            border-color: #9ca3af;
+            color: #374151;
+        }
+    </style>
+</head>
+<body class="text-gray-700">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm gold-border">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="w-16">
+                <a href="../../index.html" class="text-xl font-bold gold-text">زِينَة</a>
+            </div>
+            
+            <!-- Navigation and Favorites -->
+            <div class="hidden md:flex items-center space-x-4 space-x-reverse">
+                <nav class="flex items-center space-x-4 space-x-reverse">
+                    <a href="../../index.html" class="text-gray-600 hover:text-yellow-600">الرئيسية</a>
+                    <a href="../categories/category-koshat.html" class="text-gray-600 hover:text-yellow-600">كوشات</a>
+                    <a href="../categories/category-cake.html" class="text-gray-600 hover:text-yellow-600">تورتات وأنواع الشوكولاتة</a>
+                    <a href="../categories/category-mirr.html" class="text-gray-600 hover:text-yellow-600">مرايا</a>
+                    <a href="../categories/category-other.html" class="text-gray-600 hover:text-yellow-600">ديكورات</a>
+                    <a href="../categories/category-flowerbouquets.html" class="text-gray-600 hover:text-yellow-600">بوكيهات الورد</a>
+                    <a href="../categories/category-invitations.html" class="text-gray-600 hover:text-yellow-600">دعوات وتوزيعات</a>
+                </nav>
+                
+                <!-- Favorites Button -->
+                <a href="favorites.html" class="flex items-center text-gray-600 hover:text-yellow-600 relative">
+                    <svg class="w-5 h-5 ml-2 text-pink-500" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                    المفضلة
+                    <span id="favorites-count" class="absolute -top-2 -right-2 bg-yellow-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">0</span>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button and Favorites -->
+            <div class="md:hidden flex items-center space-x-2 space-x-reverse">
+                <!-- Favorites Button -->
+                <a href="favorites.html" class="flex items-center text-gray-600 hover:text-yellow-600 relative">
+                    <svg class="w-5 h-5 ml-2 text-pink-500" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                    المفضلة
+                    <span id="favorites-count-mobile" class="absolute -top-2 -right-2 bg-yellow-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">0</span>
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="p-2 text-gray-600 hover:text-yellow-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-200 hidden">
+            <div class="container mx-auto px-4 py-4">
+                <nav class="flex flex-col space-y-3">
+                    <a href="../../index.html" class="text-gray-600 hover:text-yellow-600 py-2">الرئيسية</a>
+                    <a href="../categories/category-koshat.html" class="text-gray-600 hover:text-yellow-600 py-2">كوشات</a>
+                    <a href="../categories/category-cake.html" class="text-gray-600 hover:text-yellow-600 py-2">تورتات وأنواع الشوكولاتة</a>
+                    <a href="../categories/category-mirr.html" class="text-gray-600 hover:text-yellow-600 py-2">مرايا</a>
+                    <a href="../categories/category-other.html" class="text-gray-600 hover:text-yellow-600 py-2">ديكورات</a>
+                    <a href="../categories/category-flowerbouquets.html" class="text-gray-600 hover:text-yellow-600 py-2">بوكيهات الورد</a>
+                    <a href="../categories/category-invitations.html" class="text-gray-600 hover:text-yellow-600 py-2">دعوات وتوزيعات</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Loading State -->
+    <div id="loading-state" class="container mx-auto px-4 py-12 text-center">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-600 mx-auto mb-4"></div>
+        <p class="text-gray-600">جاري تحميل تفاصيل المنتج...</p>
+    </div>
+
+    <!-- Product Not Found -->
+    <div id="not-found-state" class="container mx-auto px-4 py-12 text-center hidden">
+        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47-.881-6.08-2.33" />
+            </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">المنتج غير موجود</h3>
+        <p class="text-gray-600 mb-6">عذراً، المنتج الذي تبحث عنه غير متاح</p>
+        <a href="../../index.html" class="inline-block bg-yellow-600 text-white px-6 py-3 rounded-lg hover:bg-yellow-700 transition-colors">
+            العودة للرئيسية
+        </a>
+    </div>
+
+    <!-- Product Details -->
+    <main id="product-details" class="container mx-auto px-4 py-8 hidden">
+        <!-- Breadcrumb -->
+        <nav class="mb-6">
+            <ol class="flex items-center space-x-2 space-x-reverse text-sm text-gray-600">
+                <li><a href="../../index.html" class="hover:text-yellow-600">الرئيسية</a></li>
+                <li><span class="mx-2">/</span></li>
+                <li><a href="#" id="product-category-breadcrumb" class="hover:text-yellow-600"></a></li>
+                <li><span class="mx-2">/</span></li>
+                <li class="text-gray-900 font-medium" id="product-title-breadcrumb"></li>
+            </ol>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Product Images -->
+            <div class="space-y-4">
+                <!-- Main Image -->
+                <div class="relative">
+                    <img id="main-image" src="" alt="" class="w-full h-96 lg:h-[600px] object-cover rounded-lg shadow-lg product-image">
+                    <div class="absolute top-4 left-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full">متاح</div>
+                </div>
+                
+                <!-- Image Gallery -->
+                <div id="image-gallery" class="flex space-x-2 space-x-reverse overflow-x-auto image-gallery pb-2">
+                    <!-- Thumbnail images will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="space-y-6">
+                <!-- Title and Favorite Button -->
+                <div class="flex items-center justify-between">
+                    <h1 id="product-title" class="text-3xl font-bold text-gray-900 mb-2"></h1>
+                    <!-- أيقونة المفضلة -->
+                    <button id="favorite-btn" class="favorite-btn bg-white rounded-full p-3 shadow-lg hover:bg-pink-50 transition-all duration-200 border border-gray-200" onclick="toggleFavorite()">
+                        <svg id="favorite-icon" class="w-6 h-6 text-gray-400" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Price -->
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <span id="product-price" class="text-3xl font-bold gold-text"></span>
+                </div>
+
+                <!-- Description -->
+                <div id="description-section" class="hidden">
+                    <h3 class="text-lg font-semibold mb-3">وصف المنتج</h3>
+                    <p id="product-description" class="text-gray-700 leading-relaxed"></p>
+                </div>
+
+                <!-- Contact Information -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">تواصل مع البائع</h3>
+                    <p class="text-gray-600 mb-4">جميع وسائل التواصل التالية تخص البائع لهذا المنتج.</p>
+                    <div class="space-y-3">
+                        <!-- WhatsApp -->
+                        <div id="whatsapp-section" class="hidden">
+                            <a id="whatsapp-btn" href="#" 
+                               class="contact-btn whatsapp-btn text-white w-full py-4 px-6 rounded-lg flex items-center justify-center font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                </svg>
+                                <div class="text-right">
+                                    <div class="font-bold">راسل البائع عبر واتساب</div>
+                                    <div class="text-sm opacity-90">اضغط لفتح المحادثة</div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Facebook -->
+                        <div id="facebook-section" class="hidden">
+                            <a id="facebook-btn" href="#" target="_blank" 
+                               class="contact-btn facebook-btn text-white w-full py-3 px-4 rounded-lg flex items-center justify-center font-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                                صفحة البائع على فيسبوك
+                            </a>
+                        </div>
+
+                        <!-- Instagram -->
+                        <div id="instagram-section" class="hidden">
+                            <a id="instagram-btn" href="#" target="_blank" 
+                               class="contact-btn instagram-btn text-white w-full py-3 px-4 rounded-lg flex items-center justify-center font-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                                </svg>
+                                تابع البائع على إنستجرام
+                            </a>
+                        </div>
+
+                        <!-- No Contact Info -->
+                        <div id="no-contact-info" class="text-center py-4 text-gray-500">
+                            <p>لا توجد وسائل تواصل متاحة لهذا المنتج</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="border-t border-gray-200 pt-6">
+                    <h3 class="text-lg font-semibold mb-4">تفاصيل إضافية</h3>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <span class="text-gray-600">تاريخ الإضافة:</span>
+                            <span id="product-date" class="block font-medium"></span>
+                        </div>
+                        <div>
+                            <span class="text-gray-600">التصنيف الفرعي:</span>
+                            <span id="product-subcategory-detail" class="block font-medium text-gray-500">غير محدد</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-600">المحافظات المتوفرة:</span>
+                            <div id="product-governorate" class="block font-medium"></div>
+                        </div>
+                        <div>
+                            <span class="text-gray-600">المناطق/المدن المتوفرة:</span>
+                            <div id="product-cities" class="block font-medium"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                 <!-- Legal Notice Section -->
+         <section class="bg-yellow-50 border-l-4 border-yellow-400 py-6 mt-12">
+             <div class="container mx-auto px-4">
+                 <div class="flex items-start">
+                     <div class="flex-shrink-0">
+                         <svg class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                         </svg>
+                     </div>
+                     <div class="mr-3">
+                         <h3 class="text-lg font-semibold text-yellow-800 mb-2">تنويه مهم</h3>
+                         <p class="text-yellow-700 text-sm leading-relaxed">
+                             نحن منصة لعرض المنتجات فقط، ولسنا طرفًا في البيع أو التوصيل. جميع التعاملات تتم بين البائع والمشتري بشكل مباشر.
+                         </p>
+                     </div>
+                 </div>
+             </div>
+         </section>
+
+         <!-- Recommended Products Section -->
+         <section class="bg-gray-50 py-12 mt-12">
+             <div class="container mx-auto px-4">
+                 <div class="text-center mb-8">
+                     <h2 class="text-3xl font-bold mb-4 gold-text">منتجات قد تعجبك</h2>
+                     <p class="text-gray-600 max-w-2xl mx-auto">
+                         اكتشف منتجات مميزة تم اختيارها خصيصاً لك
+                     </p>
+                 </div>
+                
+                <div id="recommended-products-grid" class="flex flex-nowrap overflow-x-auto gap-4 md:gap-6 pb-4">
+                    <!-- Recommended products will be loaded dynamically -->
+                </div>
+                
+                <!-- Loading state for recommended products -->
+                <div id="recommended-loading" class="text-center py-8">
+                    <div class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-gray-600">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span class="text-gray-600">جاري تحميل المنتجات الموصى بها...</span>
+                    </div>
+                </div>
+                
+                <!-- No recommended products message -->
+                <div id="no-recommended-message" class="text-center py-12 hidden">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-700 mb-2">لا توجد منتجات موصى بها حالياً</h3>
+                    <p class="text-gray-500">سنقوم بإضافة منتجات جديدة قريباً</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let currentProduct = null;
+
+        // Get product ID from URL
+        function getProductIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+        
+        // دالة إدارة المفضلة
+        function toggleFavorite() {
+            if (!currentProduct) return;
+            
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const existingIndex = favorites.findIndex(item => item.id === currentProduct.id);
+            
+            if (existingIndex > -1) {
+                // إزالة من المفضلة
+                favorites.splice(existingIndex, 1);
+                showNotification('تم إزالة المنتج من المفضلة', 'info');
+                updateFavoriteButton(false);
+            } else {
+                // إضافة إلى المفضلة
+                const productData = {
+                    id: currentProduct.id,
+                    title: currentProduct.title || getCategoryName(currentProduct.category),
+                    imageUrl: currentProduct.image_urls && currentProduct.image_urls.length > 0 ? currentProduct.image_urls[0] : '',
+                    price: currentProduct.price || 0,
+                    governorate: currentProduct.governorate || '',
+                    cities: currentProduct.cities || '',
+                    subcategories: currentProduct.subcategory ? (Array.isArray(currentProduct.subcategory) ? currentProduct.subcategory : [currentProduct.subcategory]) : [],
+                    category: currentProduct.category || 'other', // إضافة التصنيف الرئيسي
+                    addedAt: new Date().toISOString()
+                };
+                favorites.push(productData);
+                showNotification('تم إضافة المنتج إلى المفضلة', 'success');
+                updateFavoriteButton(true);
+            }
+            
+                          // حفظ في Local Storage
+              localStorage.setItem('favorites', JSON.stringify(favorites));
+              
+              // تحديث عداد المفضلة في الهيدر
+              updateFavoritesCount();
+              
+              // إرسال حدث مخصص لضمان التزامن مع الصفحات الأخرى
+              window.dispatchEvent(new CustomEvent('favoritesChanged', {
+                  detail: { favorites: favorites }
+              }));
+        }
+        
+        // تحديث حالة أيقونة المفضلة
+        function updateFavoriteButton(isFavorite) {
+            const favoriteBtn = document.getElementById('favorite-btn');
+            const favoriteIcon = document.getElementById('favorite-icon');
+            
+            if (isFavorite) {
+                favoriteBtn.classList.add('active');
+                favoriteIcon.classList.remove('text-gray-400');
+                favoriteIcon.classList.add('text-pink-500', 'fill-current');
+            } else {
+                favoriteBtn.classList.remove('active');
+                favoriteIcon.classList.remove('text-pink-500', 'fill-current');
+                favoriteIcon.classList.add('text-gray-400');
+            }
+        }
+        
+                 // التحقق من حالة المفضلة
+         function checkFavoriteStatus() {
+             if (!currentProduct) return;
+             
+             const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+             const isFavorite = favorites.some(item => item.id === currentProduct.id);
+             updateFavoriteButton(isFavorite);
+         }
+         
+         // تحديث عداد المفضلة في الهيدر
+         function updateFavoritesCount() {
+             const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+             const countElement = document.getElementById('favorites-count');
+             const countElementMobile = document.getElementById('favorites-count-mobile');
+             
+             if (countElement) {
+                 countElement.textContent = favorites.length;
+                 
+                 // إخفاء العداد إذا كان العدد صفر
+                 if (favorites.length === 0) {
+                     countElement.style.display = 'none';
+                 } else {
+                     countElement.style.display = 'flex';
+                 }
+             }
+             
+             if (countElementMobile) {
+                 countElementMobile.textContent = favorites.length;
+                 
+                 // إخفاء العداد إذا كان العدد صفر
+                 if (favorites.length === 0) {
+                     countElementMobile.style.display = 'none';
+                 } else {
+                     countElementMobile.style.display = 'flex';
+                 }
+             }
+         }
+        
+        // دالة مساعدة للحصول على اسم الفئة
+        function getCategoryName(category) {
+            const categories = {
+                'koshat': 'كوشات',
+                'mirr': 'مرايا',
+                'cake': 'تورتات',
+                'other': 'ديكورات متنوعة',
+                'invitations': 'دعوات وتوزيعات'
+            };
+            return categories[category] || category;
+        }
+        
+        // دالة عرض الإشعارات
+        function showNotification(message, type = 'info') {
+            // إزالة الإشعارات السابقة
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            const notification = document.createElement('div');
+            notification.className = `notification fixed top-4 left-4 z-50 px-4 py-2 rounded-lg shadow-lg text-white text-sm font-medium transform transition-all duration-300 translate-x-0`;
+            
+            // تحديد لون الإشعار حسب النوع
+            if (type === 'success') {
+                notification.style.backgroundColor = '#10b981'; // أخضر
+            } else if (type === 'error') {
+                notification.style.backgroundColor = '#ef4444'; // أحمر
+            } else {
+                notification.style.backgroundColor = '#3b82f6'; // أزرق
+            }
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            // إخفاء الإشعار بعد 3 ثوان
+            setTimeout(() => {
+                notification.style.transform = 'translateX(-100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Optimized load product details
+        async function loadProductDetails() {
+            const productId = getProductIdFromUrl();
+            
+            if (!productId) {
+                showNotFound();
+                return;
+            }
+
+            try {
+                // Quick validation
+                if (!window.ProductService?.getProductById) {
+                    console.error('❌ ProductService not ready');
+                    showNotFound();
+                    return;
+                }
+
+                // Fetch product data with timeout
+                const result = await Promise.race([
+                    window.ProductService.getProductById(productId),
+                    new Promise((_, reject) => 
+                        setTimeout(() => reject(new Error('Request timeout')), 5000)
+                    )
+                ]);
+                
+                if (result.success && result.data) {
+                    currentProduct = result.data;
+                    displayProductDetails(result.data);
+                } else {
+                    showNotFound();
+                }
+            } catch (error) {
+                console.error('❌ Error loading product:', error);
+                showNotFound();
+            }
+        }
+
+        // Optimized display product details
+        function displayProductDetails(product) {
+            // Show product details immediately
+            document.getElementById('loading-state').classList.add('hidden');
+            document.getElementById('product-details').classList.remove('hidden');
+
+            // Set page title
+            const categoryName = getCategoryName(product.category);
+            document.title = `${categoryName} - زِينَة`;
+
+            // Batch DOM updates for better performance
+            const elements = {
+                title: document.getElementById('product-title'),
+                titleBreadcrumb: document.getElementById('product-title-breadcrumb'),
+                categoryBreadcrumb: document.getElementById('product-category-breadcrumb'),
+                subcategoryDetail: document.getElementById('product-subcategory-detail'),
+                date: document.getElementById('product-date'),
+                mainImage: document.getElementById('main-image'),
+                description: document.getElementById('product-description'),
+                descriptionSection: document.getElementById('description-section')
+            };
+
+            // Update text content in batch
+            elements.title.textContent = categoryName;
+            elements.categoryBreadcrumb.textContent = categoryName;
+            
+            // Set the category link
+            const categoryUrl = getCategoryUrl(product.category);
+            elements.categoryBreadcrumb.href = categoryUrl;
+            
+            // Create a more descriptive title for the breadcrumb
+            let productTitle = categoryName;
+            if (product.subcategory && product.subcategory.length > 0) {
+                // Get the first subcategory for a more specific title
+                let firstSub = '';
+                if (Array.isArray(product.subcategory)) {
+                    firstSub = product.subcategory[0];
+                } else if (typeof product.subcategory === 'string') {
+                    try {
+                        const parsed = JSON.parse(product.subcategory);
+                        firstSub = Array.isArray(parsed) ? parsed[0] : parsed;
+                    } catch (e) {
+                        firstSub = product.subcategory.split(',')[0].trim();
+                    }
+                }
+                if (firstSub) {
+                    productTitle = getSubcategoryName(firstSub);
+                }
+            }
+            elements.titleBreadcrumb.textContent = productTitle;
+            
+            // Handle subcategory efficiently
+            let subs = [];
+            if (product.subcategory && product.subcategory.length > 0) {
+                // Handle both array and string formats
+                if (Array.isArray(product.subcategory)) {
+                    subs = product.subcategory;
+                } else if (typeof product.subcategory === 'string') {
+                    // Try to parse as JSON first, then fallback to comma-separated
+                    try {
+                        const parsed = JSON.parse(product.subcategory);
+                        subs = Array.isArray(parsed) ? parsed : [parsed];
+                    } catch (e) {
+                        // If JSON parsing fails, treat as comma-separated string
+                        subs = product.subcategory.split(',').map(s => s.trim()).filter(Boolean);
+                    }
+                }
+            }
+            
+            if (subs.length > 0) {
+                elements.subcategoryDetail.innerHTML = subs.map(sub =>
+                    `<span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mr-1 mb-1">
+                        ${getSubcategoryName(sub)}
+                    </span>`
+                ).join('');
+            } else {
+                elements.subcategoryDetail.textContent = 'غير محدد';
+            }
+            // Display governorates with badges
+            const governorateElement = document.getElementById('product-governorate');
+            if (product.governorate) {
+                const governorates = product.governorate.split(',').map(g => g.trim());
+                governorateElement.innerHTML = governorates.map(gov => 
+                    window.GovernorateDisplay ? GovernorateDisplay.createBadge(gov) : `<span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full mr-1 mb-1">${gov}</span>`
+                ).join('');
+            } else {
+                governorateElement.innerHTML = '<span class="text-gray-500">غير محدد</span>';
+            }
+            
+            // Display cities with badges
+            const citiesElement = document.getElementById('product-cities');
+            if (product.cities) {
+                const cities = product.cities.split(',').map(c => c.trim());
+                citiesElement.innerHTML = cities.map(city => 
+                    `<span class="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full mr-1 mb-1">${city}</span>`
+                ).join('');
+            } else {
+                citiesElement.innerHTML = '<span class="text-gray-500">غير محدد</span>';
+            }
+            document.getElementById('product-price').textContent = product.price > 0 ? `${product.price} ج.م` : 'السعر عند الطلب';
+            
+            // Handle description efficiently
+            let cleanDescription = product.description || '';
+            cleanDescription = cleanDescription.replace(/^منتج\s+(cake|koshat|mirr|other)$/i, '').trim();
+            
+            if (cleanDescription && cleanDescription !== '') {
+                elements.description.textContent = cleanDescription;
+                elements.descriptionSection.classList.remove('hidden');
+            } else {
+                elements.descriptionSection.classList.add('hidden');
+            }
+            
+            // Update date
+            elements.date.textContent = formatDate(product.created_at);
+
+            // Set main image with optimized loading
+            const imageUrl = product.image_urls && product.image_urls.length > 0 
+                ? product.image_urls[0] 
+                : 'https://placehold.co/600x400/EEE/31343C?text=لا+توجد+صورة';
+            
+            // Preload main image for faster display
+            const img = new Image();
+            img.onload = () => {
+                elements.mainImage.src = imageUrl;
+                elements.mainImage.alt = categoryName;
+            };
+            img.src = imageUrl;
+
+            // Create image gallery and setup contact buttons in parallel
+            Promise.all([
+                createImageGallery(product.image_urls || []),
+                setupContactButtons(product)
+            ]).catch(console.error);
+            
+                         // تحديث حالة أيقونة المفضلة بعد عرض تفاصيل المنتج
+             checkFavoriteStatus();
+             
+             // تحديث عداد المفضلة في الهيدر
+             updateFavoritesCount();
+        }
+
+        // Optimized create image gallery
+        async function createImageGallery(imageUrls) {
+            const gallery = document.getElementById('image-gallery');
+            
+            if (imageUrls.length <= 1) {
+                gallery.classList.add('hidden');
+                return;
+            }
+
+            // Use DocumentFragment for better performance
+            const fragment = document.createDocumentFragment();
+            
+            imageUrls.forEach((url, index) => {
+                const div = document.createElement('div');
+                div.className = 'flex-shrink-0';
+                div.innerHTML = `
+                    <img src="${url}" 
+                         alt="صورة ${index + 1}" 
+                         class="w-20 h-20 object-cover rounded-lg cursor-pointer border-2 border-transparent hover:border-yellow-400 transition-colors"
+                         onclick="changeMainImage('${url}')"
+                         loading="lazy">
+                `;
+                fragment.appendChild(div);
+            });
+            
+            gallery.innerHTML = '';
+            gallery.appendChild(fragment);
+        }
+
+        // Change main image
+        function changeMainImage(imageUrl) {
+            const mainImage = document.getElementById('main-image');
+            mainImage.src = imageUrl;
+        }
+
+        // Setup contact buttons
+        function setupContactButtons(product) {
+            let hasContactInfo = false;
+
+            // WhatsApp
+            if (product.whatsapp) {
+                const whatsappSection = document.getElementById('whatsapp-section');
+                const whatsappBtn = document.getElementById('whatsapp-btn');
+                
+                // تنظيف رقم الهاتف من جميع الأحرف غير الرقمية
+                let phoneNumber = product.whatsapp.replace(/[^0-9]/g, '');
+                
+                // إزالة الرمز الدولي إذا كان موجوداً في البداية
+                if (phoneNumber.startsWith('20')) {
+                    phoneNumber = phoneNumber.substring(2);
+                }
+                
+                // إضافة الرمز الدولي لمصر إذا لم يكن موجوداً
+                if (!phoneNumber.startsWith('20') && !phoneNumber.startsWith('+20')) {
+                    phoneNumber = '20' + phoneNumber;
+                }
+                
+                // إنشاء رسالة واتساب محسنة
+                let message = ``;
+                
+                // إضافة السعر أولاً
+                if (product.price && product.price > 0) {
+                    message += `💰 السعر: ${product.price} ج.م\n`;
+                }
+                
+                // إضافة رابط الصورة ثانياً
+                if (product.image_urls && product.image_urls.length > 0) {
+                    message += `🖼️ رابط الصورة: ${product.image_urls[0]}\n`;
+                }
+                
+                // إضافة رابط المنتج ثالثاً
+                message += `🔗 رابط المنتج: ${window.location.href}\n\n`;
+                
+                // إضافة التحية والاستفسار في النهاية
+                message += `مرحباً، أريد الاستفسار عن هذا المنتج`;
+                
+                // إنشاء رابط الواتساب
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                
+                whatsappBtn.href = whatsappUrl;
+                whatsappBtn.setAttribute('target', '_blank');
+                whatsappBtn.setAttribute('rel', 'noopener noreferrer');
+                
+                // إضافة معالج النقر للتعامل مع الأجهزة المحمولة
+                whatsappBtn.addEventListener('click', function(e) {
+                    // التحقق من أن المستخدم على جهاز محمول
+                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                    
+                    if (isMobile) {
+                        // محاولة فتح تطبيق الواتساب مباشرة
+                        window.location.href = whatsappUrl;
+                    } else {
+                        // على الكمبيوتر، فتح في تبويب جديد
+                        window.open(whatsappUrl, '_blank');
+                    }
+                });
+                
+                // إضافة tooltip لشرح محتوى الرسالة
+                whatsappBtn.title = 'اضغط لفتح محادثة واتساب مع رسالة تحتوي على تفاصيل المنتج';
+                
+                // تحديث نص الزر ليكون أكثر وضوحاً
+                const whatsappText = whatsappBtn.querySelector('div');
+                if (whatsappText) {
+                    whatsappText.innerHTML = `
+                        <div class="font-bold">تواصل عبر واتساب</div>
+                        <div class="text-sm opacity-90">رسالة تلقائية مع تفاصيل المنتج</div>
+                    `;
+                }
+                
+                // إضافة مؤشر بصري أن الرسالة ستكون تلقائية
+                whatsappBtn.classList.add('relative');
+                const autoIndicator = document.createElement('div');
+                autoIndicator.className = 'absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full shadow-lg';
+                autoIndicator.textContent = 'تلقائي';
+                autoIndicator.style.animation = 'pulse 2s infinite';
+                whatsappBtn.appendChild(autoIndicator);
+                
+                // إضافة تأثير بصري عند التمرير
+                whatsappBtn.addEventListener('mouseenter', function() {
+                    autoIndicator.style.transform = 'scale(1.1)';
+                    autoIndicator.style.transition = 'transform 0.2s ease';
+                });
+                
+                whatsappBtn.addEventListener('mouseleave', function() {
+                    autoIndicator.style.transform = 'scale(1)';
+                });
+                
+                // إضافة تأثير بصري عند النقر
+                whatsappBtn.addEventListener('click', function() {
+                    autoIndicator.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        autoIndicator.style.transform = 'scale(1)';
+                    }, 150);
+                });
+                
+                // إضافة تأثير بصري للأجهزة اللمسية
+                whatsappBtn.addEventListener('touchstart', function() {
+                    autoIndicator.style.transform = 'scale(0.9)';
+                });
+                
+                whatsappBtn.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        autoIndicator.style.transform = 'scale(1)';
+                    }, 150);
+                });
+                
+                whatsappBtn.addEventListener('touchmove', function() {
+                    autoIndicator.style.transform = 'scale(1)';
+                });
+                
+                whatsappBtn.addEventListener('touchcancel', function() {
+                    autoIndicator.style.transform = 'scale(1)';
+                });
+                
+                whatsappSection.classList.remove('hidden');
+                hasContactInfo = true;
+            }
+
+            // Facebook
+            if (product.facebook) {
+                const facebookSection = document.getElementById('facebook-section');
+                const facebookBtn = document.getElementById('facebook-btn');
+                
+                // تنظيف وتصحيح رابط الفيسبوك
+                let facebookUrl = product.facebook.trim();
+                
+                // إزالة أي مسافات أو أحرف غير مرغوب فيها
+                facebookUrl = facebookUrl.replace(/\s+/g, '');
+                
+                // التأكد من أن الرابط يبدأ بـ https:// أو http://
+                if (!facebookUrl.startsWith('http://') && !facebookUrl.startsWith('https://')) {
+                    // إذا كان اسم المستخدم فقط، إضافة الرابط الكامل
+                    if (facebookUrl.includes('facebook.com')) {
+                        facebookUrl = 'https://' + facebookUrl;
+                    } else {
+                        facebookUrl = 'https://www.facebook.com/' + facebookUrl;
+                    }
+                }
+                
+                // التحقق من أن الرابط صحيح
+                if (facebookUrl.includes('facebook.com')) {
+                    facebookBtn.href = facebookUrl;
+                    facebookSection.classList.remove('hidden');
+                    hasContactInfo = true;
+                } else {
+                    console.warn('⚠️ رابط الفيسبوك غير صحيح:', product.facebook);
+                }
+            }
+
+            // Instagram
+            if (product.instagram) {
+                const instagramSection = document.getElementById('instagram-section');
+                const instagramBtn = document.getElementById('instagram-btn');
+                
+                // تنظيف وتصحيح رابط الإنستغرام
+                let instagramUrl = product.instagram.trim();
+                
+                // إزالة أي مسافات أو أحرف غير مرغوب فيها
+                instagramUrl = instagramUrl.replace(/\s+/g, '');
+                
+                // التأكد من أن الرابط يبدأ بـ https:// أو http://
+                if (!instagramUrl.startsWith('http://') && !instagramUrl.startsWith('https://')) {
+                    // إذا كان اسم المستخدم فقط، إضافة الرابط الكامل
+                    if (instagramUrl.includes('instagram.com')) {
+                        instagramUrl = 'https://' + instagramUrl;
+                    } else {
+                        instagramUrl = 'https://www.instagram.com/' + instagramUrl;
+                    }
+                }
+                
+                // التحقق من أن الرابط صحيح
+                if (instagramUrl.includes('instagram.com')) {
+                    instagramBtn.href = instagramUrl;
+                    instagramSection.classList.remove('hidden');
+                    hasContactInfo = true;
+                } else {
+                    console.warn('⚠️ رابط الإنستغرام غير صحيح:', product.instagram);
+                }
+            }
+
+            // Show/hide no contact info message
+            const noContactInfo = document.getElementById('no-contact-info');
+            if (!hasContactInfo) {
+                noContactInfo.classList.remove('hidden');
+            } else {
+                noContactInfo.classList.add('hidden');
+            }
+        }
+
+        // Show not found state
+        function showNotFound() {
+            document.getElementById('loading-state').classList.add('hidden');
+            document.getElementById('not-found-state').classList.remove('hidden');
+        }
+
+        // Get category name in Arabic
+        function getCategoryName(category) {
+            const categories = {
+                'koshat': 'كوشات',
+                'mirr': 'مرايا',
+                'cake': 'تورتات',
+                'other': 'ديكورات متنوعة',
+                'invitations': 'دعوات وتوزيعات',
+                'flowerbouquets': 'بوكيهات الورد'
+            };
+            return categories[category] || category;
+        }
+
+        // Get subcategory name in Arabic - Updated to match add-product.html exactly
+        function getSubcategoryName(subcategory) {
+            const subcategories = {
+                // كوشات
+                'koshat-wedding': 'كوشات زفاف',
+                'koshat-engagement': 'كوشات خطوبة',
+                
+                // مرايا
+                'mirror-wedding': 'مرآة زفاف',
+                'mirror-engagement': 'مرآة خطوبة',
+                'mirror-decorative': 'مرآة ديكور',
+                'mirror-custom': 'مرآة مخصصة',
+                'mirror-classic': 'مرآة كلاسيكية',
+                'mirror-modern': 'مرآة عصرية',
+                'mirror-luxury': 'مرآة فاخرة',
+                
+                // تورتة
+                'cake-wedding': 'تورتة زفاف',
+                'cake-engagement': 'تورتة خطوبة',
+                'cake-birthday': 'تورتة عيد ميلاد',
+                'cake-chocolate': 'تورتة شوكولاتة',
+                'cake-fruit': 'تورتة فواكه',
+                'cake-chocolate-tray': 'صينية شوكولاتة',
+                
+                // ديكورات متنوعة
+                'other-birthday': 'ديكور عيد ميلاد',
+                'other-hospital': 'استقبال المولود بالمستشفى',
+                'other-bride': 'ديكور استقبال عروسة',
+                'other-party': 'ديكور حفلات بسيطة',
+                
+                // دعوات
+                'invitation-wedding': 'دعوة زفاف',
+                'invitation-engagement': 'دعوة خطوبة',
+                'invitation-chocolate': 'توزيعات بالشوكولاتة',
+                'invitation-perfumed': 'توزيعات بالبرفان',
+                'invitation-gift': 'توزيعات مع هدية صغيرة',
+                'invitation-digital': 'دعوة رقمية',
+                'invitation-innovative': 'دعوة مبتكرة',
+                
+                // باقات الزهور
+                'flowerbouquets-natural': 'بوكيهات طبيعية',
+                'flowerbouquets-artificial': 'بوكيهات صناعية',
+                'flowerbouquets-stand': 'بوكيهات استاند',
+                'flowerbouquets-dried': 'بوكيهات مجففة',
+                'flowerbouquets-arranged': 'بوكيهات مشكلة'
+            };
+            
+            // Return Arabic name if found, otherwise return the original value
+            return subcategories[subcategory] || subcategory;
+        }
+
+        // Get category URL
+        function getCategoryUrl(category) {
+            const categoryUrls = {
+                'koshat': '../categories/category-koshat.html',
+                'mirr': '../categories/category-mirr.html',
+                'cake': '../categories/category-cake.html',
+                'other': '../categories/category-other.html',
+                'invitations': '../categories/category-invitations.html',
+                'flowerbouquets': '../categories/category-flowerbouquets.html'
+            };
+            return categoryUrls[category] || '#';
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ar-EG');
+        }
+
+        // Load product details on page load
+        // Optimized initialization function
+        async function initializeServices() {
+            console.log('🔄 Starting optimized initialization...');
+            
+            // Add styles for governorate display immediately
+            if (window.GovernorateDisplay) {
+                GovernorateDisplay.addStyles();
+            }
+            
+            // Initialize services in parallel with shorter timeout
+            const initPromises = [];
+            
+            if (window.AuthService && window.AuthService.initialize) {
+                initPromises.push(window.AuthService.initialize());
+            }
+            
+            if (window.ProductService && window.ProductService.initialize) {
+                initPromises.push(window.ProductService.initialize());
+            }
+            
+            // Wait for all services to initialize with timeout
+            try {
+                await Promise.race([
+                    Promise.all(initPromises),
+                    new Promise(resolve => setTimeout(resolve, 500)) // Reduced timeout
+                ]);
+            } catch (error) {
+                console.warn('⚠️ Service initialization timeout, continuing...', error);
+            }
+            
+            console.log('✅ Services initialized, loading product details...');
+            
+            // Quick check for ProductService
+            if (!window.ProductService || typeof window.ProductService.getProductById !== 'function') {
+                console.error('❌ ProductService not available, retrying...');
+                // Retry once after a short delay
+                setTimeout(() => {
+                    if (window.ProductService && typeof window.ProductService.getProductById === 'function') {
+                        loadProductDetails();
+                    } else {
+                        showNotFound();
+                    }
+                }, 200);
+                return;
+            }
+            
+            // Load product details immediately
+            loadProductDetails();
+            
+            // Load recommended products after a short delay
+            setTimeout(loadRecommendedProducts, 1000);
+        }
+
+        // Mobile menu functionality
+        function initMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+        }
+
+        // Start initialization immediately for faster loading
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                initializeServices();
+                initMobileMenu();
+            });
+        } else {
+            // DOM is already loaded - start immediately
+            setTimeout(function() {
+                initializeServices();
+                initMobileMenu();
+            }, 0);
+        }
+        
+                 // مستمع لتغييرات localStorage لضمان تزامن حالة المفضلة
+         window.addEventListener('storage', function(e) {
+             if (e.key === 'favorites' && currentProduct) {
+                 console.log('🔄 Favorites changed in localStorage, updating favorite status...');
+                 checkFavoriteStatus();
+             }
+             
+             // تحديث عداد المفضلة في الهيدر
+             if (e.key === 'favorites') {
+                 updateFavoritesCount();
+             }
+         });
+        
+                 // مستمع للحدث المخصص لضمان التزامن
+         window.addEventListener('favoritesChanged', function(e) {
+             if (currentProduct) {
+                 console.log('🔄 Favorites changed via custom event, updating favorite status...');
+                 checkFavoriteStatus();
+             }
+             
+             // تحديث حالة أيقونات المفضلة في المنتجات الموصى بها
+             if (currentRecommendedProducts.length > 0) {
+                 updateRecommendedProductsFavoriteStatus();
+             }
+             
+             // تحديث عداد المفضلة في الهيدر
+             updateFavoritesCount();
+         });
+    </script>
+
+
+
+    <script>
+        // Add Product Button functionality
+        const addProductBtn = document.getElementById('add-product-btn');
+        
+        async function handleAddProduct() {
+            // Wait for AuthService to be available
+                            if (!window.AuthService) {
+                    console.error('❌ AuthService not available');
+                    window.location.href = '../admin/add-info.html';
+                    return;
+                }
+                
+                const isLoggedIn = await window.AuthService.isLoggedIn();
+                if (isLoggedIn) {
+                    window.location.href = '../admin/add-product.html';
+                } else {
+                    window.location.href = '../admin/add-info.html';
+                }
+        }
+        
+        if (addProductBtn) {
+            addProductBtn.addEventListener('click', handleAddProduct);
+        }
+        
+        // دالة تحميل المنتجات الموصى بها
+        async function loadRecommendedProducts() {
+            try {
+                console.log('🔄 Loading recommended products...');
+                
+                // انتظار خدمة الإعلانات
+                if (!window.advertisingService) {
+                    console.log('⏳ Waiting for AdvertisingService...');
+                    await new Promise(resolve => {
+                        const checkInterval = setInterval(() => {
+                            if (window.advertisingService) {
+                                clearInterval(checkInterval);
+                                resolve();
+                            }
+                        }, 100);
+                        
+                        setTimeout(() => {
+                            clearInterval(checkInterval);
+                            console.error('❌ AdvertisingService not loaded after 5 seconds');
+                            resolve();
+                        }, 5000);
+                    });
+                }
+                
+                if (!window.advertisingService) {
+                    console.error('❌ AdvertisingService not available');
+                    showNoRecommendedMessage();
+                    return;
+                }
+                
+                // تحميل المنتجات الموصى بها
+                const recommendedProducts = await window.advertisingService.getRecommendedProducts(6);
+                
+                if (recommendedProducts && recommendedProducts.length > 0) {
+                    console.log('✅ Loaded recommended products:', recommendedProducts.length);
+                    displayRecommendedProducts(recommendedProducts);
+                    
+                    // تسجيل ظهور الإعلانات
+                    recommendedProducts.forEach(product => {
+                        if (product.ad_id) {
+                            window.advertisingService.recordImpression(product.ad_id);
+                        }
+                    });
+                    
+                    // إخفاء رسالة التحميل
+                    document.getElementById('recommended-loading').classList.add('hidden');
+                } else {
+                    console.log('ℹ️ No recommended products available');
+                    showNoRecommendedMessage();
+                }
+                
+            } catch (error) {
+                console.error('❌ Error loading recommended products:', error);
+                showNoRecommendedMessage();
+            }
+        }
+        
+                 // دالة عرض المنتجات الموصى بها
+         function displayRecommendedProducts(products) {
+             const grid = document.getElementById('recommended-products-grid');
+             if (!grid) return;
+             
+             // حفظ المنتجات في المتغير العام
+             currentRecommendedProducts = products;
+             
+             grid.innerHTML = '';
+             
+             products.forEach(product => {
+                 const productCard = createProductCard(product);
+                 grid.appendChild(productCard);
+             });
+             
+             // تحديث حالة أيقونات المفضلة
+             updateRecommendedProductsFavoriteStatus();
+         }
+        
+        // دالة إنشاء بطاقة منتج
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'flex-shrink-0 w-64 md:w-80 bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer';
+            
+            const imageUrl = product.image_urls && product.image_urls.length > 0 ? product.image_urls[0] : '../assets/images/placeholder.jpg';
+            const title = product.title || getCategoryName(product.category);
+            const price = product.price || 'السعر عند الطلب';
+            const governorate = product.governorate || '';
+            const cities = product.cities || '';
+            
+            card.innerHTML = `
+                <div class="relative">
+                    <img src="${imageUrl}" alt="${title}" class="w-full h-48 object-cover object-center product-image">
+                    <div class="absolute top-2 right-2">
+                        <button onclick="toggleFavoriteFromCard('${product.id}')" class="favorite-btn bg-white rounded-full p-2 shadow-lg hover:bg-pink-50 transition-all duration-200">
+                            <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xl font-bold gold-text">${price}</span>
+                    </div>
+                    <div class="text-sm text-gray-600 mb-3">
+                        <div class="mb-1">
+                            <span class="font-medium">المحافظات:</span> ${governorate}
+                        </div>
+                        ${cities && cities.trim() !== '' && cities !== 'جميع المدن' ? `<div><span class="font-medium">المناطق:</span> ${cities}</div>` : ''}
+                    </div>
+                </div>
+            `;
+            
+            // إضافة حدث النقر للانتقال إلى صفحة تفاصيل المنتج
+            card.addEventListener('click', function(e) {
+                // منع النقر إذا كان النقر على زر المفضلة
+                if (e.target.closest('.favorite-btn')) {
+                    return;
+                }
+                
+                // الانتقال إلى صفحة تفاصيل المنتج
+                window.location.href = `product-details.html?id=${product.id}`;
+            });
+            
+            return card;
+        }
+        
+        // دالة إظهار رسالة عدم وجود منتجات موصى بها
+        function showNoRecommendedMessage() {
+            document.getElementById('recommended-loading').classList.add('hidden');
+            document.getElementById('no-recommended-message').classList.remove('hidden');
+        }
+        
+                          // متغير عام لتخزين المنتجات الموصى بها
+         let currentRecommendedProducts = [];
+         
+         // دالة تحديث حالة أيقونات المفضلة في المنتجات الموصى بها
+         function updateRecommendedProductsFavoriteStatus() {
+             const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+             
+             currentRecommendedProducts.forEach(product => {
+                 const favoriteBtn = document.querySelector(`[onclick="toggleFavoriteFromCard('${product.id}')"]`);
+                 if (favoriteBtn) {
+                     const icon = favoriteBtn.querySelector('svg');
+                     const isFavorite = favorites.some(item => item.id === product.id);
+                     
+                     if (isFavorite) {
+                         icon.classList.remove('text-gray-400');
+                         icon.classList.add('text-pink-500', 'fill-current');
+                         favoriteBtn.classList.add('active');
+                     } else {
+                         icon.classList.remove('text-pink-500', 'fill-current');
+                         icon.classList.add('text-gray-400');
+                         favoriteBtn.classList.remove('active');
+                     }
+                 }
+             });
+         }
+         
+         // دالة إدارة المفضلة من البطاقات
+         function toggleFavoriteFromCard(productId) {
+             // البحث عن المنتج في المنتجات الموصى بها
+             const product = currentRecommendedProducts.find(p => p.id === productId);
+             
+             if (!product) {
+                 console.warn('⚠️ Product not found in recommended products:', productId);
+                 return;
+             }
+             
+             // إدارة المفضلة
+             const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+             const existingIndex = favorites.findIndex(item => item.id === productId);
+             
+             if (existingIndex > -1) {
+                 // إزالة من المفضلة
+                 favorites.splice(existingIndex, 1);
+                 showNotification('تم إزالة المنتج من المفضلة', 'info');
+                 
+                 // تحديث أيقونة المفضلة
+                 const favoriteBtn = event.target.closest('.favorite-btn');
+                 if (favoriteBtn) {
+                     const icon = favoriteBtn.querySelector('svg');
+                     icon.classList.remove('text-pink-500', 'fill-current');
+                     icon.classList.add('text-gray-400');
+                     favoriteBtn.classList.remove('active');
+                 }
+             } else {
+                 // إضافة إلى المفضلة
+                 const productData = {
+                     id: product.id,
+                     title: product.title || getCategoryName(product.category),
+                     imageUrl: product.image_urls && product.image_urls.length > 0 ? product.image_urls[0] : '',
+                     price: product.price || 0,
+                     governorate: product.governorate || '',
+                     cities: product.cities || '',
+                     subcategories: product.subcategory ? (Array.isArray(product.subcategory) ? product.subcategory : [product.subcategory]) : [],
+                     category: product.category || 'other',
+                     addedAt: new Date().toISOString()
+                 };
+                 favorites.push(productData);
+                 showNotification('تم إضافة المنتج إلى المفضلة', 'success');
+                 
+                 // تحديث أيقونة المفضلة
+                 const favoriteBtn = event.target.closest('.favorite-btn');
+                 if (favoriteBtn) {
+                     const icon = favoriteBtn.querySelector('svg');
+                     icon.classList.remove('text-gray-400');
+                     icon.classList.add('text-pink-500', 'fill-current');
+                     favoriteBtn.classList.add('active');
+                 }
+             }
+             
+             // حفظ في Local Storage
+             localStorage.setItem('favorites', JSON.stringify(favorites));
+             
+             // تحديث عداد المفضلة في الهيدر
+             updateFavoritesCount();
+             
+             // إرسال حدث مخصص لضمان التزامن مع الصفحات الأخرى
+             window.dispatchEvent(new CustomEvent('favoritesChanged', {
+                 detail: { favorites: favorites }
+             }));
+         }
+    </script>
+
+    <!-- ملف تحسين التمرير -->
+    <script src="../../js/features/scroll-optimization.js?v=2025-08-22-1" defer></script>
+    
+    <!-- Floating Add Product Button -->
+    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
+        <a href="add-product-request.html" class="inline-flex items-center justify-center text-white px-6 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-semibold text-lg" style="background: #845FCE;">
+            <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            أضف منتجك
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">زِينَة</h3>
+                    <p class="text-gray-300 text-sm">منصة متخصصة في خدمات الخطوبة والمناسبات</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="../../index.html" class="hover:text-white transition-colors">الرئيسية</a></li>
+                        <li><a href="../public/about-us.html" class="hover:text-white transition-colors">من نحن</a></li>
+                        <li><a href="../public/contact-us.html" class="hover:text-white transition-colors">اتصل بنا</a></li>
+                        <li><a href="../public/advertise-with-us.html" class="text-yellow-400 hover:text-yellow-300 font-medium">⭐ أضف إعلانك</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">السياسات</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="../../legal/privacy-policy.html" class="hover:text-white transition-colors">سياسة الخصوصية</a></li>
+                        <li><a href="../../legal/terms-of-use.html" class="hover:text-white transition-colors">شروط الاستخدام</a></li>
+                        <li><a href="../../legal/cookies-policy.html" class="hover:text-white transition-colors">سياسة الكوكيز</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">تواصل معنا</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="tel:+201016436007" class="hover:text-white transition-colors">📞 01016436007</a></li>
+                        <li><a href="https://www.facebook.com/share/1BCEhAV89y/?mibextid=wwXIfr" target="_blank" class="hover:text-white transition-colors">📘 فيسبوك</a></li>
+                        <li><a href="https://www.instagram.com/zeina.eg_?igsh=MXg4bzNqd213Z3IyaQ==" target="_blank" class="hover:text-white transition-colors">📷 إنستغرام</a></li>
+                        <li><a href="https://wa.me/201016436007" target="_blank" class="hover:text-white transition-colors">📱 واتساب</a></li>
+                    </ul>
+                </div>
+            </div>
+                         <div class="border-t border-gray-700 mt-8 pt-8">
+                 <div class="text-center text-sm text-gray-300 mb-4">
+                     <p>&copy; 2024 زِينَة. جميع الحقوق محفوظة.</p>
+                 </div>
+                 <div class="bg-gray-700 rounded-lg p-4 text-center">
+                     <p class="text-xs text-gray-400 leading-relaxed">
+                         تنبيه قانوني: يقتصر دور الموقع على عرض المنتجات وربط الأطراف، ولا يشارك في البيع أو الدفع أو التوصيل. لا تتحمل إدارة الموقع أي مسؤولية عن الاتفاقات أو المعاملات التي تتم بين المستخدمين.
+                     </p>
+                 </div>
+             </div>
+        </div>
+    </footer>
+</body>
+</html> 
+
+

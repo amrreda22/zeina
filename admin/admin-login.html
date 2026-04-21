@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H3XBCDY4W0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-H3XBCDY4W0');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ØªØ³Ø¬ÙŠÙ„ Ø¯Ø®ÙˆÙ„ Ø§Ù„Ø¥Ø¯Ø§Ø±Ø©</title>
+    <link rel="icon" type="image/png" href="../assets/images/zeina.jpeg">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" as="script">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config/supabase-config.js?v=2025-08-22-1"></script>
+    <script src="../js/security/admin-security.js?v=2025-08-22-1"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1994970196400389"
+     crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: right;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .security-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            color: #856404;
+            font-size: 14px;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: block;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">ðŸ”</div>
+        <h1 class="title">ØªØ³Ø¬ÙŠÙ„ Ø¯Ø®ÙˆÙ„ Ø§Ù„Ø¥Ø¯Ø§Ø±Ø©</h1>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„</button>
+        </form>
+        
+        <div id="message" class="message"></div>
+        
+        <div class="security-info">
+            <strong>Ù…Ø¹Ù„ÙˆÙ…Ø§Øª Ø£Ù…Ù†ÙŠØ©:</strong><br>
+            â€¢ Ù‡Ø°Ù‡ Ø§Ù„ØµÙØ­Ø© Ù…Ø®ØµØµØ© Ù„Ù„Ù…Ø¯ÙŠØ±ÙŠÙ† ÙÙ‚Ø·<br>
+            â€¢ Ø¬Ù…ÙŠØ¹ Ù…Ø­Ø§ÙˆÙ„Ø§Øª ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ù…Ø³Ø¬Ù„Ø©<br>
+            â€¢ Ø³ÙŠØªÙ… Ø¥ØºÙ„Ø§Ù‚ Ø§Ù„Ø¬Ù„Ø³Ø© ØªÙ„Ù‚Ø§Ø¦ÙŠØ§Ù‹ Ø¨Ø¹Ø¯ 30 Ø¯Ù‚ÙŠÙ‚Ø© Ù…Ù† Ø¹Ø¯Ù… Ø§Ù„Ù†Ø´Ø§Ø·
+        </div>
+        
+                    <a href="../index.html" class="back-link">â† Ø§Ù„Ø¹ÙˆØ¯Ø© Ù„Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©</a>
+    </div>
+
+    <script>
+        // Ø§Ù†ØªØ¸Ø§Ø± ØªØ­Ù…ÙŠÙ„ Supabase
+        async function waitForSupabase() {
+            let attempts = 0;
+            while (!window.supabaseClient && attempts < 100) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                attempts++;
+            }
+            
+            if (!window.supabaseClient) {
+                showMessage('Ø®Ø·Ø£: Ù„Ù… ÙŠØªÙ… ØªØ­Ù…ÙŠÙ„ Supabase. ØªØ£ÙƒØ¯ Ù…Ù† Ø§Ù„Ø§ØªØµØ§Ù„ Ø¨Ø§Ù„Ø¥Ù†ØªØ±Ù†Øª', 'error');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Ø§Ù†ØªØ¸Ø§Ø± ØªØ­Ù…ÙŠÙ„ adminSecurity
+        async function waitForAdminSecurity() {
+            let attempts = 0;
+            while (!window.adminSecurity && attempts < 100) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                attempts++;
+            }
+            
+            if (!window.adminSecurity) {
+                showMessage('Ø®Ø·Ø£: Ù„Ù… ÙŠØªÙ… ØªØ­Ù…ÙŠÙ„ Ù†Ø¸Ø§Ù… Ø§Ù„Ø£Ù…Ø§Ù†', 'error');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Ø§Ù†ØªØ¸Ø§Ø± ØªØ­Ù…ÙŠÙ„ Supabase
+            if (!await waitForSupabase()) {
+                return;
+            }
+            
+            const formData = new FormData(e.target);
+            const loginData = Object.fromEntries(formData);
+            
+            const loginBtn = document.querySelector('.login-btn');
+            loginBtn.textContent = 'Ø¬Ø§Ø±ÙŠ ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„...';
+            loginBtn.disabled = true;
+            
+            try {
+                // ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„
+                const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+                    email: loginData.email,
+                    password: loginData.password
+                });
+
+                if (error) {
+                    throw error;
+                }
+
+                if (data.user) {
+                    // Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù† Ø¯ÙˆØ± Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… Ù…Ù† auth.users
+                    console.log('User data:', data.user);
+                    
+                    // Ù†ØªØ­Ù‚Ù‚ Ù…Ù† metadata Ø£Ùˆ Ù†Ø³Ù…Ø­ Ù„Ø¬Ù…ÙŠØ¹ Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ† Ø§Ù„Ù…Ø³Ø¬Ù„ÙŠÙ† Ø¨Ø§Ù„Ø¯Ø®ÙˆÙ„ Ù…Ø¤Ù‚ØªØ§Ù‹
+                    const userRole = data.user.user_metadata?.role || 'admin';
+                    console.log('User role:', userRole);
+
+                    // Ø§Ù„Ø³Ù…Ø§Ø­ Ù„Ø¬Ù…ÙŠØ¹ Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ† Ø§Ù„Ù…Ø³Ø¬Ù„ÙŠÙ† Ø¨Ø§Ù„Ø¯Ø®ÙˆÙ„ (Ù…Ø¤Ù‚ØªØ§Ù‹)
+                    if (data.user.email) {
+                        // ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø­Ø¯Ø« Ø§Ù„Ø£Ù…Ù†ÙŠ
+                        if (await waitForAdminSecurity()) {
+                            await adminSecurity.logSecurityEvent('admin_login', { 
+                                email: loginData.email 
+                            });
+                        }
+                        
+                        showMessage('âœ… ØªÙ… ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ø¨Ù†Ø¬Ø§Ø­! Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªÙˆØ¬ÙŠÙ‡...', 'success');
+                        
+                        // Ø§Ù„ØªÙˆØ¬ÙŠÙ‡ Ø¥Ù„Ù‰ Ù„ÙˆØ­Ø© Ø§Ù„Ø¥Ø¯Ø§Ø±Ø©
+                        setTimeout(() => {
+                            window.location.href = 'admin-dashboard.html';
+                        }, 1500);
+                        
+                    } else {
+                        // ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬ Ø¥Ø°Ø§ Ù„Ù… ÙŠÙƒÙ† Ù…Ø³Ø¬Ù„
+                        await window.supabaseClient.auth.signOut();
+                        throw new Error('ÙØ´Ù„ ÙÙŠ ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„');
+                    }
+                    
+                } else {
+                    throw new Error('ÙØ´Ù„ ÙÙŠ ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„');
+                }
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                
+                let errorMessage = 'Ø®Ø·Ø£ ÙÙŠ ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„';
+                
+                if (error.message.includes('Invalid login credentials')) {
+                    errorMessage = 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ Ø£Ùˆ ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± ØºÙŠØ± ØµØ­ÙŠØ­Ø©';
+                } else if (error.message.includes('Email not confirmed')) {
+                    errorMessage = 'ÙŠØ±Ø¬Ù‰ ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ Ø£ÙˆÙ„Ø§Ù‹';
+                } else if (error.message.includes('Too many requests')) {
+                    errorMessage = 'ØªÙ… ØªØ¬Ø§ÙˆØ² Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰ Ù„Ù„Ù…Ø­Ø§ÙˆÙ„Ø§Øª. Ø­Ø§ÙˆÙ„ Ù„Ø§Ø­Ù‚Ø§Ù‹';
+                } else if (error.message.includes('Ù„ÙŠØ³ Ù„Ø¯ÙŠÙƒ ØµÙ„Ø§Ø­ÙŠØ©')) {
+                    errorMessage = 'Ù„ÙŠØ³ Ù„Ø¯ÙŠÙƒ ØµÙ„Ø§Ø­ÙŠØ© Ø§Ù„ÙˆØµÙˆÙ„ Ù„Ù„Ø¥Ø¯Ø§Ø±Ø©';
+                } else {
+                    errorMessage += ': ' + error.message;
+                }
+                
+                showMessage(errorMessage, 'error');
+                
+                // ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø­Ø¯Ø« Ø§Ù„Ø£Ù…Ù†ÙŠ
+                if (await waitForAdminSecurity()) {
+                    await adminSecurity.logSecurityEvent('failed_login', { 
+                        email: loginData.email,
+                        error: error.message 
+                    });
+                }
+            } finally {
+                loginBtn.textContent = 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„';
+                loginBtn.disabled = false;
+            }
+        });
+
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù† ÙˆØ¬ÙˆØ¯ Ø¬Ù„Ø³Ø© Ù†Ø´Ø·Ø©
+        window.onload = async function() {
+            // Ø§Ù†ØªØ¸Ø§Ø± ØªØ­Ù…ÙŠÙ„ Supabase
+            if (!await waitForSupabase()) {
+                return;
+            }
+            
+            try {
+                const { data: { user } } = await window.supabaseClient.auth.getUser();
+                if (user) {
+                    // Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù† Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… Ø§Ù„Ù…Ø³Ø¬Ù„
+                    console.log('User already logged in:', user);
+                    
+                    if (user.email) {
+                        console.log('âœ… User already logged in, redirecting to dashboard');
+                        window.location.href = 'admin-dashboard.html';
+                    } else {
+                        console.log('User logged in but no email, staying on login page');
+                    }
+                } else {
+                    console.log('No user logged in, staying on login page');
+                }
+            } catch (error) {
+                console.error('Error checking session:', error);
+            }
+        };
+    </script>
+
+    <!-- Ù…Ù„Ù ØªØ­Ø³ÙŠÙ† Ø§Ù„ØªÙ…Ø±ÙŠØ± -->
+    <script src="../js/features/scroll-optimization.js?v=2025-08-22-1" defer></script>
+</body>
+</html> 

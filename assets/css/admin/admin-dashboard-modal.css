@@ -1,0 +1,165 @@
+﻿                        * {
+                            margin: 0;
+                            padding: 0;
+                            box-sizing: border-box;
+                        }
+                        
+                        body {
+                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                            background: #f8fafc;
+                            color: #1f2937;
+                            line-height: 1.6;
+                        }
+                        
+                        .container {
+                            max-width: 800px;
+                            margin: 0 auto;
+                            padding: 20px;
+                        }
+                        
+                        .header {
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            color: white;
+                            padding: 30px;
+                            border-radius: 15px;
+                            margin-bottom: 30px;
+                            text-align: center;
+                        }
+                        
+                        .header h1 {
+                            font-size: 2.5em;
+                            margin-bottom: 10px;
+                        }
+                        
+                        .header .subtitle {
+                            font-size: 1.2em;
+                            opacity: 0.9;
+                        }
+                        
+                        .content-section {
+                            background: white;
+                            border-radius: 12px;
+                            padding: 25px;
+                            margin-bottom: 20px;
+                            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                        }
+                        
+                        .section-title {
+                            font-size: 1.5em;
+                            color: #374151;
+                            margin-bottom: 20px;
+                            border-bottom: 2px solid #e5e7eb;
+                            padding-bottom: 10px;
+                        }
+                        
+                        .product-images {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                            gap: 20px;
+                            margin-bottom: 20px;
+                        }
+                        
+                        .product-image {
+                            width: 100%;
+                            height: 200px;
+                            object-fit: cover;
+                            border-radius: 8px;
+                            border: 2px solid #e5e7eb;
+                        }
+                        
+                        .product-details {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            gap: 20px;
+                        }
+                        
+                        .detail-item {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            padding: 10px;
+                            background: #f8fafc;
+                            border-radius: 8px;
+                        }
+                        
+                        .detail-icon {
+                            font-size: 1.2em;
+                        }
+                        
+                        .detail-label {
+                            font-weight: 600;
+                            color: #374151;
+                        }
+                        
+                        .detail-value {
+                            color: #6b7280;
+                        }
+                        
+                        .social-links {
+                            display: flex;
+                            gap: 15px;
+                            flex-wrap: wrap;
+                        }
+                        
+                        .social-link {
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            padding: 10px 15px;
+                            background: #dbeafe;
+                            color: #1e40af;
+                            text-decoration: none;
+                            border-radius: 8px;
+                            font-weight: 500;
+                            transition: all 0.3s ease;
+                        }
+                        
+                        .social-link:hover {
+                            background: #bfdbfe;
+                            transform: translateY(-2px);
+                        }
+                        
+                        .ad-info {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                            gap: 15px;
+                        }
+                        
+                        .info-card {
+                            background: #f8fafc;
+                            padding: 15px;
+                            border-radius: 8px;
+                            text-align: center;
+                        }
+                        
+                        .info-value {
+                            font-size: 1.5em;
+                            font-weight: bold;
+                            color: #3b82f6;
+                            margin-bottom: 5px;
+                        }
+                        
+                        .info-label {
+                            color: #6b7280;
+                            font-size: 0.9em;
+                        }
+                        
+                        .close-btn {
+                            position: fixed;
+                            top: 20px;
+                            right: 20px;
+                            background: #ef4444;
+                            color: white;
+                            border: none;
+                            padding: 10px 15px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-size: 1.1em;
+                            transition: all 0.3s ease;
+                        }
+                        
+                        .close-btn:hover {
+                            background: #dc2626;
+                            transform: scale(1.1);
+                        }
+                    

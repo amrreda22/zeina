@@ -1,0 +1,637 @@
+﻿<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H3XBCDY4W0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-H3XBCDY4W0');
+    </script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مرشحات بوكيهات الورد | Zeina</title>
+<link rel="icon" type="image/png" href="../../assets/images/zeina.jpeg">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../../js/config/supabase-config.js"></script>
+<script src="../../js/services/product-service.js"></script>
+<script src="../../js/services/cities-service.js"></script>
+    <style>
+        body{font-family:'Tajawal',sans-serif}
+        
+        /* Mobile-first responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+            
+            main.container {
+                padding-bottom: 7rem !important;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr !important;
+                gap: 0.75rem !important;
+            }
+            
+            .filter-card {
+                padding: 0.75rem !important;
+            }
+            
+            .filter-title {
+                font-size: 0.875rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .dropdown-btn {
+                padding: 0.625rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .governorate-option {
+                padding: 0.5rem 0.75rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .selected-governorate-tag {
+                font-size: 0.7rem !important;
+                padding: 0.25rem 0.5rem !important;
+            }
+            
+            .bottom-buttons {
+                padding: 0.75rem !important;
+                gap: 0.5rem !important;
+            }
+            
+            .bottom-buttons button {
+                padding: 0.75rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .header-content {
+                padding: 0.75rem !important;
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+                text-align: center !important;
+            }
+            
+            .header-title {
+                font-size: 1rem !important;
+            }
+            
+            .result-text {
+                font-size: 0.75rem !important;
+            }
+        }
+        
+        /* Simple Governorate Filter Styles */
+        .simple-governorate-filter {
+            position: relative;
+            width: 100%;
+        }
+        
+        .filter-dropdown {
+            position: relative;
+        }
+        
+        .dropdown-btn {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #374151;
+            transition: border-color 0.2s ease;
+        }
+        
+        .dropdown-btn:hover {
+            border-color: #d1d5db;
+        }
+        
+        .dropdown-btn.active {
+            border-color: #845FCE;
+            box-shadow: 0 0 0 3px rgba(132, 95, 206, 0.1);
+        }
+        
+        .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.2s ease;
+        }
+        
+        .dropdown-btn.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .governorate-options {
+            padding: 8px;
+        }
+        
+        .governorate-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .governorate-option:hover {
+            background-color: #f3f4f6;
+        }
+        
+        .governorate-checkbox {
+            margin-left: 8px;
+            width: 16px;
+            height: 16px;
+            accent-color: #845FCE;
+        }
+        
+        .selected-governorates {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .selected-governorate-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: #e0e7ff;
+            color: #3730a3;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .remove-governorate {
+            background: none;
+            border: none;
+            color: #3730a3;
+            cursor: pointer;
+            font-size: 14px;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+        
+        .remove-governorate:hover {
+            background: rgba(55, 48, 163, 0.1);
+        }
+        
+        .selected-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #e0e7ff;
+            color: #3730a3;
+            border-radius: 16px;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 500;
+            margin: 0 4px;
+        }
+        
+        .selected-item-remove {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 14px;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+            margin-right: 2px;
+        }
+        
+        .selected-item-remove:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+<header class="bg-white border-b sticky top-0 z-40"><div class="container mx-auto px-4 py-3 flex items-center justify-between header-content"><a href="../categories/category-flowerbouquets.html" class="text-lg font-bold text-yellow-700 header-title">زِينَة</a><div class="text-sm text-gray-600 result-text">النتائج المتوقعة: <span id="result-count" class="font-semibold">0</span></div></div></header>
+<div class="bg-white border-b py-3">
+    <div class="container mx-auto px-4">
+        <a href="../categories/category-flowerbouquets.html" class="inline-flex items-center gap-2 text-sm font-semibold text-purple-600 hover:text-purple-800 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            رجوع إلى صفحة بوكيهات الورد
+        </a>
+    </div>
+</div>
+<main class="container mx-auto px-4 py-4 flex-1">
+<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+<div class="bg-white rounded-xl p-4 shadow-sm filter-card">
+    <div class="font-semibold text-gray-800 mb-3 filter-title">التصنيف الفرعي</div>
+    <div class="simple-governorate-filter">
+        <div class="filter-dropdown">
+            <button type="button" id="subcat-dropdown-btn" class="dropdown-btn">
+                <span id="subcat-placeholder">اختر التصنيفات</span>
+                <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+            </button>
+            <div id="subcat-dropdown-content" class="dropdown-content hidden">
+                <div class="governorate-options" id="subcat-box"></div>
+            </div>
+        </div>
+        <div id="selected-subcats" class="selected-governorates"></div>
+    </div>
+</div>
+
+<div class="bg-white rounded-xl p-4 shadow-sm hidden" id="color-filter-section">
+    <div class="font-semibold text-gray-800 mb-3 filter-title">الألوان</div>
+    <div class="simple-governorate-filter">
+        <div class="filter-dropdown">
+            <button type="button" id="color-dropdown-btn" class="dropdown-btn">
+                <span id="color-placeholder">اختر الألوان</span>
+                <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+            </button>
+            <div id="color-dropdown-content" class="dropdown-content hidden">
+                <div class="governorate-options">
+                    <label class="governorate-option">
+                        <input type="checkbox" class="governorate-checkbox color" value="أحمر">
+                        <span>أحمر</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="checkbox" class="governorate-checkbox color" value="وردي">
+                        <span>وردي</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="checkbox" class="governorate-checkbox color" value="أبيض">
+                        <span>أبيض</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="checkbox" class="governorate-checkbox color" value="أصفر">
+                        <span>أصفر</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="checkbox" class="governorate-checkbox color" value="برتقالي">
+                        <span>برتقالي</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="checkbox" class="governorate-checkbox color" value="بنفسجي">
+                        <span>بنفسجي</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="checkbox" class="governorate-checkbox color" value="أزرق">
+                        <span>أزرق</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="checkbox" class="governorate-checkbox color" value="أخضر">
+                        <span>أخضر</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="checkbox" class="governorate-checkbox color" value="متعدد الألوان">
+                        <span>متعدد الألوان</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div id="selected-colors" class="selected-governorates"></div>
+    </div>
+</div>
+
+<div class="bg-white rounded-xl p-4 shadow-sm filter-card">
+    <div class="font-semibold text-gray-800 mb-3 filter-title">المحافظة</div>
+    <div class="simple-governorate-filter">
+        <div class="filter-dropdown">
+            <button type="button" id="governorate-dropdown-btn" class="dropdown-btn">
+                <span id="governorate-placeholder">اختر المحافظات</span>
+                <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+            </button>
+            <div id="governorate-dropdown-content" class="dropdown-content hidden">
+                <div class="governorate-options" id="gov-box"></div>
+            </div>
+        </div>
+        <div id="selected-governorates" class="selected-governorates"></div>
+    </div>
+</div>
+<div class="bg-white rounded-xl p-4 shadow-sm filter-card">
+    <div class="font-semibold text-gray-800 mb-3 filter-title">المدن/المناطق</div>
+    <div class="simple-governorate-filter">
+        <div class="filter-dropdown">
+            <button type="button" id="city-dropdown-btn" class="dropdown-btn">
+                <span id="city-placeholder">اختر المدن</span>
+                <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+            </button>
+            <div id="city-dropdown-content" class="dropdown-content hidden">
+                <div class="governorate-options" id="city-box"></div>
+            </div>
+        </div>
+        <div id="selected-cities" class="selected-governorates"></div>
+    </div>
+</div>
+<div class="bg-white rounded-xl p-4 shadow-sm filter-card">
+    <div class="font-semibold text-gray-800 mb-3 filter-title">السعر</div>
+    <div class="simple-governorate-filter">
+        <div class="filter-dropdown">
+            <button type="button" id="price-dropdown-btn" class="dropdown-btn">
+                <span id="price-placeholder">اختر نطاق السعر</span>
+                <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+            </button>
+            <div id="price-dropdown-content" class="dropdown-content hidden">
+                <div class="governorate-options">
+                    <label class="governorate-option">
+                        <input type="radio" name="price" value="" class="governorate-checkbox">
+                        <span>جميع الأسعار</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="radio" name="price" value="0-200" class="governorate-checkbox">
+                        <span>حتى 200 ج.م</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="radio" name="price" value="200-500" class="governorate-checkbox">
+                        <span>200 - 500 ج.م</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="radio" name="price" value="500-1000" class="governorate-checkbox">
+                        <span>500 - 1000 ج.م</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="radio" name="price" value="1000+" class="governorate-checkbox">
+                        <span>أكثر من 1000 ج.م</span>
+                    </label>
+                    <label class="governorate-option">
+                        <input type="radio" name="price" value="negotiable" class="governorate-checkbox">
+                        <span>السعر عند الطلب</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div id="selected-price" class="selected-governorates"></div>
+    </div>
+</div>
+
+</div>
+</main>
+<div class="fixed bottom-0 inset-x-0 bg-white border-t z-40"><div class="container mx-auto px-4 py-3 flex items-center gap-3 bottom-buttons"><button id="clear-btn" class="flex-1 py-3 rounded-lg text-white font-semibold bg-red-600 hover:bg-red-700">مسح الفلاتر</button><button id="apply-btn" class="flex-1 py-3 rounded-lg text-white font-semibold" style="background:#845FCE">تطبيق الفلاتر (<span id="apply-count">0</span>)</button></div></div>
+<script>
+let all=[],active={subcat:[],gov:[],city:[],color:[]};
+const codeToAr={
+"flowerbouquets-natural":"بوكيهات طبيعية","flowerbouquets-artificial":"بوكيهات صناعية","flowerbouquets-stand":"بوكيهات استاند","flowerbouquets-dried":"بوكيهات مجففة","flowerbouquets-arranged":"بوكيهات مشكلة"
+},arToCode={
+"بوكيهات طبيعية":"flowerbouquets-natural","بوكيهات صناعية":"flowerbouquets-artificial","بوكيهات استاند":"flowerbouquets-stand","بوكيهات مجففة":"flowerbouquets-dried","بوكيهات مشكلة":"flowerbouquets-arranged"
+};
+function setFromURL(){const u=new URL(location),gp=v=>u.searchParams.getAll(v).filter(Boolean);active.subcat=gp('subcat');active.gov=gp('gov');active.city=gp('city');active.color=gp('color');const pmin=u.searchParams.get('pmin'),pmax=u.searchParams.get('pmax');if(pmin!==null||pmax!==null){let val='';if(pmin==='0'&&pmax==='200') val='0-200';else if(pmin==='201'&&pmax==='500') val='200-500';else if(pmin==='501'&&pmax==='1000') val='500-1000';else if(pmin==='1001'&&(pmax===null||pmax===''||pmax===undefined)) val='1000+';else if(pmin==='0'&&pmax==='0') val='negotiable';if(val){const sel=document.querySelector(`input[name="price"][value="${val}"]`);if(sel) sel.checked=true;}}}
+function toParams(){const p=new URLSearchParams();console.log('Active filters before toParams:', active);active.subcat.forEach(v=>p.append('subcat',v));active.gov.forEach(v=>p.append('gov',v));active.city.forEach(v=>p.append('city',v));active.color.forEach(v=>p.append('color',v));const sel=document.querySelector('input[name="price"]:checked');const val=sel?sel.value:'';if(val){switch(val){case'0-200':p.set('pmin','0');p.set('pmax','200');break;case'200-500':p.set('pmin','201');p.set('pmax','500');break;case'500-1000':p.set('pmin','501');p.set('pmax','1000');break;case'1000+':p.set('pmin','1001');break;case'negotiable':p.set('pmin','0');p.set('pmax','0');break;}}console.log('Generated params:', p.toString());return p.toString();}
+function parseSubcats(val){let a=[];if(!val) return a;try{const j=JSON.parse(val);if(Array.isArray(j)) a=j;}catch{a=[val];}return a;}
+function passSubcat(p){if(!active.subcat.length) return true;let raw=[];if(Array.isArray(p.subcategory)) raw=p.subcategory;else if(typeof p.subcategory==='string') raw=parseSubcats(p.subcategory);const s=raw.map(x=>arToCode[x]||x);return active.subcat.some(c=>s.includes(c)||s.includes(codeToAr[c]||c));}
+function passGov(p){if(!active.gov.length) return true;const g=(p.governorate||'').split(',').map(s=>s.trim());return active.gov.some(v=>{if(v === 'توصيل لكل المحافظات'){return g.some(x=>x.includes('توصيل لكل المحافظات'));}return g.some(x=>x.includes(v));});}
+function passCity(p){if(!active.city.length) return true;const c=(p.cities||'').split(',').map(s=>s.trim());return active.city.some(v=>c.some(x=>x.includes(v)));}
+function passPrice(p){const pr=parseFloat(p.price)||0,sel=document.querySelector('input[name="price"]:checked'),val=sel?sel.value:'';if(!val) return true;switch(val){case'0-200':return pr>0&&pr<=200;case'200-500':return pr>200&&pr<=500;case'500-1000':return pr>500&&pr<=1000;case'1000+':return pr>1000;case'negotiable':return pr===0||!p.price;default:return true;}}
+function passColor(p){if(!active.color.length) return true;const c=(p.colors||'').split(',').map(s=>s.trim());const colorMap={'أحمر':'red','وردي':'pink','أبيض':'white','أصفر':'yellow','برتقالي':'orange','بنفسجي':'purple','أزرق':'blue','أخضر':'green','متعدد الألوان':'mixed'};return active.color.some(v=>{const engColor=colorMap[v]||v;return c.some(x=>x===engColor||x===v||x.includes(engColor)||x.includes(v));});}
+function apply(){const r=all.filter(p=>passSubcat(p)&&passGov(p)&&passCity(p)&&passPrice(p)&&passColor(p));console.log('Filtered products:',r.length,'Total products:',all.length,'Active colors:',active.color);document.getElementById('result-count').textContent=r.length;document.getElementById('apply-count').textContent=`${r.length}`;}
+function renderGov(c){const gb=document.getElementById('gov-box');gb.innerHTML='';const l1=document.createElement('label');l1.className='governorate-option';l1.innerHTML=`<input type="checkbox" class="governorate-checkbox gov" value="توصيل لكل المحافظات"> <span>توصيل لكل المحافظات</span>`;gb.appendChild(l1);c.getAllGovernorates().forEach(g=>{const l=document.createElement('label');l.className='governorate-option';l.innerHTML=`<input type=\"checkbox\" class=\"governorate-checkbox gov\" value=\"${g}\"> <span>${g}</span>`;gb.appendChild(l);});}
+function renderCities(c){const cb=document.getElementById('city-box');cb.innerHTML='';let list=[];if(active.gov.length){active.gov.forEach(g=>{c.getCitiesForGovernorate(g).forEach(x=>list.push(x));});list=[...new Set(list)];}list.forEach(v=>{const l=document.createElement('label');l.className='governorate-option';l.innerHTML=`<input type=\"checkbox\" class=\"governorate-checkbox city\" value=\"${v}\"> <span>${v}</span>`;cb.appendChild(l);});}
+function bind(){const subAll=document.getElementById('subcat-all');if(subAll){subAll.checked=active.subcat.length===0;subAll.onchange=()=>{if(subAll.checked){document.querySelectorAll('.subcat').forEach(c=>c.checked=false);active.subcat=[];apply();}}}
+document.querySelectorAll('.subcat').forEach(el=>{el.checked=active.subcat.includes(el.value);el.onchange=()=>{el.checked?active.subcat.push(el.value):active.subcat=active.subcat.filter(v=>v!==el.value);updateSelectedSubcats();updateColorFilterVisibility();apply();document.getElementById('subcat-dropdown-content').classList.add('hidden');document.getElementById('subcat-dropdown-btn').classList.remove('active');};});
+document.querySelectorAll('.gov').forEach(el=>{el.checked=active.gov.includes(el.value);el.onchange=()=>{el.checked?active.gov.push(el.value):active.gov=active.gov.filter(v=>v!==el.value);updateSelectedGovernorates();renderCities(new CitiesService());bind();apply();document.getElementById('governorate-dropdown-content').classList.add('hidden');document.getElementById('governorate-dropdown-btn').classList.remove('active');};});
+document.querySelectorAll('.city').forEach(el=>{el.checked=active.city.includes(el.value);el.onchange=()=>{el.checked?active.city.push(el.value):active.city=active.city.filter(v=>v!==el.value);updateSelectedCities();apply();document.getElementById('city-dropdown-content').classList.add('hidden');document.getElementById('city-dropdown-btn').classList.remove('active');};});
+document.querySelectorAll('input[name="price"]').forEach(el=>{
+    const u=new URL(location);
+    const pmin=u.searchParams.get('pmin');
+    const pmax=u.searchParams.get('pmax');
+    let selectedValue = '';
+    if(pmin!==null||pmax!==null){
+        if(pmin==='0'&&pmax==='200') selectedValue='0-200';
+        else if(pmin==='201'&&pmax==='500') selectedValue='200-500';
+        else if(pmin==='501'&&pmax==='1000') selectedValue='500-1000';
+        else if(pmin==='1001'&&(pmax===null||pmax===''||pmax===undefined)) selectedValue='1000+';
+        else if(pmin==='0'&&pmax==='0') selectedValue='negotiable';
+    }
+    el.checked = el.value === selectedValue;
+    el.onchange=()=>{updateSelectedPrice();apply();document.getElementById('price-dropdown-content').classList.add('hidden');document.getElementById('price-dropdown-btn').classList.remove('active');}
+});
+document.querySelectorAll('.color').forEach(el=>{el.checked=active.color.includes(el.value);el.onchange=()=>{el.checked?active.color.push(el.value):active.color=active.color.filter(v=>v!==el.value);updateSelectedColors();apply();document.getElementById('color-dropdown-content').classList.add('hidden');document.getElementById('color-dropdown-btn').classList.remove('active');};});
+document.getElementById('clear-btn').onclick=()=>{location.replace('flowerbouquets-filters.html');};
+document.getElementById('apply-btn').onclick=()=>{const q=toParams();console.log('Applying filters with params:', q);location.href=`../categories/category-flowerbouquets.html${q?'?'+q:''}`;};
+
+// Dropdown functionality for all filters
+setupDropdown('governorate-dropdown-btn', 'governorate-dropdown-content');
+setupDropdown('subcat-dropdown-btn', 'subcat-dropdown-content');
+setupDropdown('city-dropdown-btn', 'city-dropdown-content');
+setupDropdown('price-dropdown-btn', 'price-dropdown-content');
+}
+
+function setupDropdown(btnId, contentId) {
+    const dropdownBtn = document.getElementById(btnId);
+    const dropdownContent = document.getElementById(contentId);
+    
+    // Remove any existing event listeners
+    dropdownBtn.replaceWith(dropdownBtn.cloneNode(true));
+    const newDropdownBtn = document.getElementById(btnId);
+    
+    newDropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownContent.classList.toggle('hidden');
+        newDropdownBtn.classList.toggle('active');
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!newDropdownBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+            dropdownContent.classList.add('hidden');
+            newDropdownBtn.classList.remove('active');
+        }
+    });
+    
+    // Prevent dropdown from closing when clicking inside
+    dropdownContent.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+}
+
+function renderSubcats(){
+    const sb=document.getElementById('subcat-box'); sb.innerHTML='';
+    const subcats = [
+        {value: 'flowerbouquets-natural', text: 'بوكيهات طبيعية'},
+        {value: 'flowerbouquets-artificial', text: 'بوكيهات صناعية'},
+        {value: 'flowerbouquets-stand', text: 'بوكيهات استاند'},
+        {value: 'flowerbouquets-dried', text: 'بوكيهات مجففة'},
+        {value: 'flowerbouquets-arranged', text: 'بوكيهات مشكلة'}
+    ];
+    subcats.forEach(s=>{const l=document.createElement('label'); l.className='governorate-option'; l.innerHTML=`<input type="checkbox" class="governorate-checkbox subcat" value="${s.value}"> <span>${s.text}</span>`; sb.appendChild(l);});
+}
+
+function updateSelectedGovernorates() {
+    const placeholder = document.getElementById('governorate-placeholder');
+    
+    if (active.gov.length > 0) {
+        const selectedItems = active.gov.map(gov => {
+            return `<span class="selected-item"><button class="selected-item-remove" onclick="removeGovernorate('${gov}')">×</button>${gov}</span>`;
+        }).join('');
+        placeholder.innerHTML = `اختر المحافظات: ${selectedItems}`;
+    } else {
+        placeholder.textContent = 'اختر المحافظات';
+    }
+}
+
+function removeGovernorate(gov) {
+    active.gov = active.gov.filter(g => g !== gov);
+    document.querySelectorAll('.gov').forEach(el => {
+        if (el.value === gov) el.checked = false;
+    });
+    updateSelectedGovernorates();
+    renderCities(new CitiesService());
+    bind();
+    apply();
+}
+
+function updateSelectedSubcats() {
+    const placeholder = document.getElementById('subcat-placeholder');
+    
+    if (active.subcat.length > 0) {
+        const selectedItems = active.subcat.map(subcat => {
+            const text = codeToAr[subcat] || subcat;
+            return `<span class="selected-item"><button class="selected-item-remove" onclick="removeSubcat('${subcat}')">×</button>${text}</span>`;
+        }).join('');
+        placeholder.innerHTML = `اختر التصنيفات: ${selectedItems}`;
+    } else {
+        placeholder.textContent = 'اختر التصنيفات';
+    }
+}
+
+function removeSubcat(subcat) {
+    active.subcat = active.subcat.filter(s => s !== subcat);
+    document.querySelectorAll('.subcat').forEach(el => {
+        if (el.value === subcat) el.checked = false;
+    });
+    updateSelectedSubcats();
+    apply();
+}
+
+function updateSelectedCities() {
+    const placeholder = document.getElementById('city-placeholder');
+    
+    if (active.city.length > 0) {
+        const selectedItems = active.city.map(city => {
+            return `<span class="selected-item"><button class="selected-item-remove" onclick="removeCity('${city}')">×</button>${city}</span>`;
+        }).join('');
+        placeholder.innerHTML = `اختر المدن: ${selectedItems}`;
+    } else {
+        placeholder.textContent = 'اختر المدن';
+    }
+}
+
+function removeCity(city) {
+    active.city = active.city.filter(c => c !== city);
+    document.querySelectorAll('.city').forEach(el => {
+        if (el.value === city) el.checked = false;
+    });
+    updateSelectedCities();
+    apply();
+}
+
+function updateSelectedPrice() {
+    const placeholder = document.getElementById('price-placeholder');
+    
+    const selectedPrice = document.querySelector('input[name="price"]:checked');
+    if (selectedPrice && selectedPrice.value) {
+        const priceTexts = {
+            '0-200': 'حتى 200 ج.م',
+            '200-500': '200 - 500 ج.م',
+            '500-1000': '500 - 1000 ج.م',
+            '1000+': 'أكثر من 1000 ج.م',
+            'negotiable': 'السعر عند الطلب'
+        };
+        
+        const selectedItem = `<span class="selected-item"><button class="selected-item-remove" onclick="removePrice()">×</button>${priceTexts[selectedPrice.value]}</span>`;
+        placeholder.innerHTML = `اختر نطاق السعر: ${selectedItem}`;
+    } else {
+        placeholder.textContent = 'اختر نطاق السعر';
+    }
+}
+
+function updateSelectedColors() {
+    const placeholder = document.getElementById('color-placeholder');
+    
+    if (active.color.length > 0) {
+        const selectedItems = active.color.map(color => {
+            return `<span class="selected-item"><button class="selected-item-remove" onclick="removeColor('${color}')">×</button>${color}</span>`;
+        }).join('');
+        placeholder.innerHTML = `اختر الألوان: ${selectedItems}`;
+    } else {
+        placeholder.textContent = 'اختر الألوان';
+    }
+}
+
+function removeColor(color) {
+    active.color = active.color.filter(c => c !== color);
+    document.querySelectorAll('.color').forEach(el => {
+        if (el.value === color) el.checked = false;
+    });
+    updateSelectedColors();
+    apply();
+}
+
+function updateColorFilterVisibility() {
+    const colorFilterSection = document.getElementById('color-filter-section');
+    if (colorFilterSection) {
+        if (active.subcat.length > 0) {
+            colorFilterSection.classList.remove('hidden');
+        } else {
+            colorFilterSection.classList.add('hidden');
+            // Clear color selections when no subcategory is selected
+            active.color = [];
+            document.querySelectorAll('.color').forEach(el => el.checked = false);
+            updateSelectedColors();
+        }
+    }
+}
+
+function removePrice() {
+    document.querySelectorAll('input[name="price"]').forEach(el => el.checked = false);
+    updateSelectedPrice();
+    apply();
+}
+document.addEventListener('DOMContentLoaded',async()=>{setFromURL();const cities=new CitiesService();renderGov(cities);renderCities(cities);try{if(!window.ProductService){await new Promise(res=>{let t=setInterval(()=>{if(window.ProductService){clearInterval(t);res();}},100);setTimeout(()=>{clearInterval(t);res();},5000);});}const r=await window.ProductService.getProductsByCategory('flowerbouquets');all=r.success?r.data:[];}catch{all=[];} renderSubcats(); bind();setupDropdown('color-dropdown-btn', 'color-dropdown-content');apply();updateSelectedGovernorates();updateSelectedSubcats();updateSelectedCities();updateSelectedPrice();updateSelectedColors();updateColorFilterVisibility();});
+</script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,899 @@
+﻿<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H3XBCDY4W0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-H3XBCDY4W0');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1994970196400389"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المفضلة - زِينَة</title>
+    <meta name="description" content="صفحة المفضلة - احفظ المنتجات التي أعجبتك واطلع عليها لاحقاً">
+    <meta name="title" content="المفضلة - زِينَة">
+    <link rel="canonical" href="https://zeinaevents.com/pages/products/favorites.html">
+    <link rel="icon" type="image/png" href="../../assets/images/zeina.jpeg">
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "المفضلة - زِينَة",
+      "description": "صفحة المفضلة - احفظ المنتجات التي أعجبتك واطلع عليها لاحقاً",
+      "url": "https://zeinaevents.com/pages/products/favorites.html",
+      "mainEntity": {
+        "@type": "ItemList",
+        "name": "قائمة المفضلة",
+        "description": "المنتجات المحفوظة في المفضلة"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Zeina Events",
+        "url": "https://zeinaevents.com"
+      }
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" as="script">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../../js/config/supabase-config.js?v=2025-08-22-1"></script>
+    <script src="../../js/services/product-service.js?v=2025-08-22-1"></script>
+    <script src="../../js/services/auth-service.js?v=2025-08-22-1"></script>
+    <script src="../../js/utils/common-utils.js?v=2025-08-22-1"></script>
+
+    <style>
+        :root {
+            --primary-pink: #f8d7e4;
+            --primary-green: #d8e9d6;
+            --primary-beige: #f5f0e6;
+            --gold: #d4af37;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f9f9f9;
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .product-card img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
+            transform: scale(1.0);
+        }
+        
+        .product-card .image-container {
+            position: relative;
+            width: 100%;
+            height: 384px;
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+        
+        .gold-text {
+            color: var(--gold);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-pink);
+            color: #374151;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background-color: #f3c4d1;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--primary-green);
+            color: #374151;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c8e0c4;
+            transform: translateY(-1px);
+        }
+        
+        /* تحسينات للشاشات الصغيرة */
+        @media (max-width: 640px) {
+            .product-card .image-container {
+                height: 280px;
+            }
+            
+            .product-card {
+                font-size: 0.875rem;
+            }
+            
+            .product-card h3 {
+                font-size: 1rem;
+                line-height: 1.2;
+            }
+            
+            .product-card .price {
+                font-size: 0.9rem;
+            }
+            
+            .product-card .location {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+            .product-card .image-container {
+                height: 280px;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .product-card .image-container {
+                height: 320px;
+            }
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .empty-state svg {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            color: #d1d5db;
+        }
+        
+        .favorite-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .favorite-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .favorite-btn svg {
+            transition: all 0.2s ease;
+        }
+        
+        /* تحسين القائمة الرئيسية للهاتف المحمول */
+        #mobile-menu {
+            /* منع التمرير في الصفحة الرئيسية عند فتح القائمة */
+            overscroll-behavior: contain;
+            /* تحسين التمرير باللمس */
+            -webkit-overflow-scrolling: touch;
+            /* إخفاء شريط التمرير */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        #mobile-menu::-webkit-scrollbar {
+            display: none;
+        }
+        
+        #mobile-menu > div {
+            /* تحديد ارتفاع أقصى للقائمة */
+            max-height: 80vh;
+            /* تفعيل التمرير العمودي */
+            overflow-y: auto;
+            /* منع التمرير الأفقي */
+            overflow-x: hidden;
+        }
+        
+        /* تحسين التمرير على الأجهزة المحمولة */
+        @media (max-width: 768px) {
+            #mobile-menu > div {
+                /* تحسين التمرير على الأجهزة المحمولة */
+                -webkit-overflow-scrolling: touch;
+                /* منع التمرير في الصفحة الرئيسية */
+                overscroll-behavior: contain;
+                /* تحسين الأداء */
+                will-change: scroll-position;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="../../index.html" class="text-xl sm:text-2xl font-bold gold-text">زِينَة</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                                 <nav class="hidden lg:flex space-x-6 space-x-reverse">
+                     <a href="../../index.html" class="text-gray-600 hover:text-gray-900 transition-colors">الرئيسية</a>
+                     <a href="../categories/category-koshat.html" class="text-gray-600 hover:text-gray-900 transition-colors">كوشات</a>
+                     <a href="../categories/category-cake.html" class="text-gray-600 hover:text-gray-900 transition-colors">تورتات وأنواع الشوكولاتة</a>
+                     <a href="../categories/category-mirr.html" class="text-gray-600 hover:text-gray-900 transition-colors">مرايا</a>
+                     <a href="../categories/category-other.html" class="text-gray-600 hover:text-gray-900 transition-colors">ديكورات</a>
+                     <a href="../categories/category-flowerbouquets.html" class="text-gray-600 hover:text-gray-900 transition-colors">بوكيهات الورد</a>
+                     <a href="../categories/category-invitations.html" class="text-gray-600 hover:text-gray-900 transition-colors">دعوات وتوزيعات</a>
+                     <a href="../public/about-us.html" class="text-gray-600 hover:text-gray-900 transition-colors">من نحن</a>
+                     <a href="../public/contact-us.html" class="text-gray-600 hover:text-gray-900 transition-colors">اتصل بنا</a>
+                 </nav>
+                
+                <!-- Desktop Buttons -->
+                <div class="hidden md:flex items-center space-x-4 space-x-reverse">
+                    <a href="favorites.html" class="text-pink-500 font-semibold flex items-center space-x-2 space-x-reverse">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span>المفضلة</span>
+                    </a>
+
+                    <a href="../../index.html" class="btn-secondary text-sm">الصفحة الرئيسية</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center space-x-3 space-x-reverse">
+                    <!-- Mobile Favorites Button -->
+                    <a href="favorites.html" class="text-pink-500 hover:text-pink-600 transition-colors flex items-center space-x-2 space-x-reverse relative">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span id="favorites-count-badge-mobile" class="absolute -top-2 -right-2 bg-yellow-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold hidden">0</span>
+                    </a>
+                    
+    
+                    
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="lg:hidden hidden border-t border-gray-200 pt-4 pb-2">
+                <div class="max-h-[80vh] overflow-y-auto scrollbar-hide" style="-webkit-overflow-scrolling: touch; overscroll-behavior: contain;">
+                    <nav class="flex flex-col space-y-3 px-4 py-2">
+                     <a href="../../index.html" class="text-gray-600 hover:text-gray-900 transition-colors py-2 px-3 rounded-lg hover:bg-gray-50">الرئيسية</a>
+                     <a href="../categories/category-koshat.html" class="text-gray-600 hover:text-gray-900 transition-colors py-2 px-3 rounded-lg hover:bg-gray-50">كوشات</a>
+                     <a href="../categories/category-cake.html" class="text-gray-600 hover:text-gray-900 transition-colors py-2 px-3 rounded-lg hover:bg-gray-50">تورتات وأنواع الشوكولاتة</a>
+                     <a href="../categories/category-mirr.html" class="text-gray-600 hover:text-gray-900 transition-colors py-2 px-3 rounded-lg hover:bg-gray-50">مرايا</a>
+                     <a href="../categories/category-other.html" class="text-gray-600 hover:text-gray-900 transition-colors py-2 px-3 rounded-lg hover:bg-gray-50">ديكورات</a>
+                     <a href="../categories/category-flowerbouquets.html" class="text-gray-600 hover:text-gray-900 transition-colors py-2 px-3 rounded-lg hover:bg-gray-50">بوكيهات الورد</a>
+                     <a href="../categories/category-invitations.html" class="text-gray-600 hover:text-gray-900 transition-colors py-2 px-3 rounded-lg hover:bg-gray-50">دعوات وتوزيعات</a>
+                     <a href="../public/about-us.html" class="text-gray-600 hover:text-gray-900 transition-colors py-2 px-3 rounded-lg hover:bg-gray-50">من نحن</a>
+                     <a href="../public/contact-us.html" class="text-gray-600 hover:text-gray-900 transition-colors py-2 px-3 rounded-lg hover:bg-gray-50">اتصل بنا</a>
+                 </nav>
+                <!-- تواصل معنا -->
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <h4 class="text-sm font-semibold text-gray-700 mb-3">تواصل معنا</h4>
+                    
+                    <!-- التواصل الاجتماعي -->
+                    <div class="mb-3">
+                        <div class="space-y-2">
+                            <a href="https://www.facebook.com/share/1BCEhAV89y/?mibextid=wwXIfr" target="_blank" class="block py-2 px-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 text-sm flex items-center">
+                                <span class="mr-2">📘</span>
+                                فيسبوك
+                            </a>
+                            <a href="https://www.instagram.com/zeina.eg_?igsh=MXg4bzNqd213Z3IyaQ==" target="_blank" class="block py-2 px-3 text-gray-600 hover:text-pink-600 hover:bg-pink-50 rounded-lg transition-all duration-200 text-sm flex items-center">
+                                <span class="mr-2">📷</span>
+                                إنستغرام
+                            </a>
+                            <a href="https://wa.me/201016436007" target="_blank" class="block py-2 px-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200 text-sm flex items-center">
+                                <span class="mr-2">📱</span>
+                                واتساب
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- التواصل المباشر -->
+                    <div class="mb-3">
+                        <div class="space-y-2">
+                            <a href="tel:+201016436007" class="block py-2 px-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 text-sm flex items-center">
+                                <span class="mr-2">📞</span>
+                                اتصل بنا: 01016436007
+                            </a>
+                            <a href="../public/contact-us.html" class="block py-2 px-3 text-gray-600 hover:text-yellow-600 hover:bg-yellow-50 rounded-lg transition-all duration-200 text-sm flex items-center">
+                                <span class="mr-2">📧</span>
+                                راسلنا
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <a href="../../index.html" class="btn-secondary text-sm w-full text-center block">الصفحة الرئيسية</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">المفضلة</h1>
+            <p class="text-gray-600 text-lg">المنتجات التي أضفتها إلى قائمة المفضلة</p>
+        </div>
+
+        <!-- Favorites Count -->
+        <div class="mb-6 text-center">
+            <span class="text-gray-600">عدد المنتجات المفضلة: <span id="favorites-count" class="font-semibold text-pink-600">0</span></span>
+        </div>
+
+        <!-- Favorites Grid -->
+        <div id="favorites-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- سيتم ملء هذا القسم بواسطة JavaScript -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="empty-state hidden">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+            <h3 class="text-xl font-semibold text-gray-600 mb-2">لا توجد منتجات في المفضلة</h3>
+            <p class="text-gray-500 mb-6">ابدأ بتصفح المنتجات وأضف ما يعجبك إلى قائمة المفضلة</p>
+            <a href="../../index.html" class="btn-primary">تصفح التصنيفات</a>
+        </div>
+    </main>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // ===== وظائف إدارة المفضلة =====
+        
+        // عرض المنتجات المفضلة
+        function displayFavorites() {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const container = document.getElementById('favorites-container');
+            const emptyState = document.getElementById('empty-state');
+            const countElement = document.getElementById('favorites-count');
+            
+            // تحديث العداد
+            countElement.textContent = favorites.length;
+            
+            if (favorites.length === 0) {
+                container.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            
+            container.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            
+            // خريطة ترجمة التصنيفات الفرعية
+            const subcategoryMap = {
+                // مرايا - تصحيح المفاتيح
+                'mirr-wedding': 'مرآة زفاف',
+                'mirr-engagement': 'مرآة خطوبة',
+                'mirr-birthday': 'مرآة عيد ميلاد',
+                'mirr-decorative': 'مرآة ديكور',
+                'mirr-custom': 'مرآة مخصصة',
+                'mirr-classic': 'مرآة كلاسيكية',
+                'mirr-modern': 'مرآة عصرية',
+                'mirr-luxury': 'مرآة فاخرة',
+                
+                // مرايا - إضافة المفاتيح البديلة
+                'mirror-wedding': 'مرآة زفاف',
+                'mirror-engagement': 'مرآة خطوبة',
+                'mirror-birthday': 'مرآة عيد ميلاد',
+                'mirror-decorative': 'مرآة ديكور',
+                'mirror-custom': 'مرآة مخصصة',
+                'mirror-classic': 'مرآة كلاسيكية',
+                'mirror-modern': 'مرآة عصرية',
+                'mirror-luxury': 'مرآة فاخرة',
+                
+                // كوشات
+                'koshat-wedding': 'كوشة زفاف',
+                'koshat-engagement': 'كوشة خطوبة',
+                'koshat-birthday': 'كوشة عيد ميلاد',
+                'koshat-decorative': 'كوشة ديكور',
+                'koshat-custom': 'كوشة مخصصة',
+                'koshat-party': 'كوشة حفلة',
+                'koshat-corporate': 'كوشة شركة',
+                
+                // تورتات
+                'cake-wedding': 'تورتة زفاف',
+                'cake-engagement': 'تورتة خطوبة',
+                'cake-birthday': 'تورتة عيد ميلاد',
+                'cake-decorative': 'تورتة ديكور',
+                'cake-custom': 'تورتة مخصصة',
+                'cake-chocolate': 'تورتة شوكولاتة',
+                'cake-fruit': 'تورتة فواكه',
+                
+                // ديكورات أخرى
+                'other-wedding': 'ديكور زفاف',
+                'other-engagement': 'ديكور خطوبة',
+                'other-birthday': 'ديكور عيد ميلاد',
+                'other-decorative': 'ديكور منزلي',
+                'other-custom': 'ديكور مخصص',
+                'other-hospital': 'ديكور مستشفى',
+                'other-bride': 'ديكور عروسة',
+                'other-party': 'ديكور حفلة',
+                'other-balloons': 'بالونات وهدايا',
+                'other-flowers': 'زهور وأزهار',
+                'other-lights': 'إضاءات ديكور',
+                
+                // دعوات
+                'invitation-wedding': 'دعوة زفاف',
+                'invitation-engagement': 'دعوة خطوبة',
+                'invitation-birthday': 'دعوة عيد ميلاد',
+                'invitation-party': 'دعوة حفلة',
+                'invitation-corporate': 'دعوة شركة',
+                
+                // باقات الزهور
+                'flowerbouquets-natural': 'بوكيهات طبيعية',
+                'flowerbouquets-artificial': 'بوكيهات صناعية',
+                'flowerbouquets-stand': 'بوكيهات استاند',
+                'flowerbouquets-dried': 'بوكيهات مجففة',
+                'flowerbouquets-arranged': 'بوكيهات مشكلة'
+            };
+            
+            // دالة لترجمة التصنيفات الفرعية
+            function translateSubcategories(subcategories, mainCategory = null) {
+                console.log('🔍 Original subcategories:', subcategories);
+                console.log('🔍 Main category:', mainCategory);
+                console.log('🔍 Type:', typeof subcategories);
+                console.log('🔍 Is Array:', Array.isArray(subcategories));
+                
+                if (!subcategories) {
+                    // إذا لم توجد تصنيفات فرعية، حاول إنشاء تصنيف افتراضي من التصنيف الرئيسي
+                    if (mainCategory) {
+                        return inferSubcategoriesFromMainCategory(mainCategory);
+                    }
+                    return ['تصنيف فرعي غير محدد'];
+                }
+                
+                let subcatArray;
+                
+                // معالجة البيانات
+                if (Array.isArray(subcategories)) {
+                    // إذا كانت array
+                    subcatArray = subcategories;
+                    console.log('🔍 Using as array:', subcatArray);
+                } else if (typeof subcategories === 'string') {
+                    // إذا كانت string، استخدم split
+                    subcatArray = subcategories.split(',').map(item => item.trim());
+                    console.log('🔍 Split string result:', subcatArray);
+                } else {
+                    console.log('🔍 Unknown type, trying to infer from main category');
+                    if (mainCategory) {
+                        return inferSubcategoriesFromMainCategory(mainCategory);
+                    }
+                    return ['تصنيف فرعي غير محدد'];
+                }
+                
+                // تنظيف وتصفية البيانات
+                subcatArray = subcatArray
+                    .filter(item => item && item.trim() !== '' && item.trim() !== 'undefined' && item.trim() !== 'null')
+                    .map(item => item.trim());
+                
+                console.log('🔍 Cleaned array:', subcatArray);
+                
+                // إذا لم توجد تصنيفات صالحة، حاول استنتاجها من التصنيف الرئيسي
+                if (subcatArray.length === 0) {
+                    console.log('🔍 No valid subcategories found, trying to infer from main category');
+                    if (mainCategory) {
+                        return inferSubcategoriesFromMainCategory(mainCategory);
+                    }
+                    return ['تصنيف فرعي غير محدد'];
+                }
+                
+                const result = subcatArray.map(subcat => {
+                    const trimmed = subcat.trim();
+                    const translated = subcategoryMap[trimmed] || trimmed;
+                    console.log(`🔍 Mapping: "${trimmed}" -> "${translated}"`);
+                    return translated;
+                });
+                
+                console.log('🔍 Final result:', result);
+                
+                // إزالة التصنيفات غير الصالحة
+                const filteredResult = result.filter(item => 
+                    item && 
+                    item.trim() !== '' && 
+                    item !== 'تصنيف غير محدد' && 
+                    item !== 'تصنيف فرعي غير محدد' &&
+                    item !== 'undefined' &&
+                    item !== 'null'
+                );
+                
+                if (filteredResult.length > 0) {
+                    console.log('🔍 Filtered result:', filteredResult);
+                    return filteredResult;
+                }
+                
+                // كملاذ أخير، حاول استنتاج التصنيفات من التصنيف الرئيسي
+                if (mainCategory) {
+                    return inferSubcategoriesFromMainCategory(mainCategory);
+                }
+                
+                return ['تصنيف فرعي غير محدد'];
+            }
+            
+            // دالة لاستنتاج التصنيفات الفرعية من التصنيف الرئيسي
+            function inferSubcategoriesFromMainCategory(category) {
+                const categorySubcategories = {
+                    'koshat': ['كوشة زفاف', 'كوشة خطوبة'],
+                    'mirr': ['مرآة زفاف', 'مرآة ديكور'],
+                    'mirror': ['مرآة زفاف', 'مرآة ديكور'],
+                    'cake': ['تورتة زفاف', 'تورتة عيد ميلاد'],
+                    'other': ['ديكور عيد ميلاد', 'ديكور حفلة'],
+                    'invitations': ['دعوة زفاف', 'دعوة خطوبة']
+                };
+                
+                return categorySubcategories[category] || ['تصنيف فرعي عام'];
+            };
+            
+            // عرض المنتجات
+            container.innerHTML = favorites.map(product => {
+                console.log('🔍 Processing product:', product);
+                console.log('🔍 Product subcategories:', product.subcategories);
+                console.log('🔍 Product category:', product.category);
+                
+                // تحديد التصنيف الرئيسي أولاً
+                let mainCategory = 'تصنيف غير محدد';
+                let originalCategory = null;
+                
+                if (product.category) {
+                    originalCategory = product.category;
+                    const categoryMap = {
+                        'koshat': 'كوشات',
+                        'mirr': 'مرايا',
+                        'mirror': 'مرايا', // إضافة دعم لـ mirror أيضاً
+                        'cake': 'تورتات',
+                        'other': 'ديكورات متنوعة',
+                        'invitations': 'دعوات وتوزيعات'
+                    };
+                    mainCategory = categoryMap[product.category] || product.category;
+                    console.log(`🔍 Main category from product.category: "${mainCategory}"`);
+                }
+                
+                // إذا لم يكن هناك تصنيف رئيسي، حاول استنتاجه من التصنيفات الفرعية
+                if (mainCategory === 'تصنيف غير محدد' && product.subcategories) {
+                    let firstSubcat = null;
+                    
+                    if (Array.isArray(product.subcategories) && product.subcategories.length > 0) {
+                        firstSubcat = product.subcategories[0];
+                    } else if (typeof product.subcategories === 'string' && product.subcategories.trim() !== '') {
+                        firstSubcat = product.subcategories.split(',')[0];
+                    }
+                    
+                    if (firstSubcat) {
+                        const subcatKey = firstSubcat.trim();
+                        console.log(`🔍 Inferring main category from subcategory: "${subcatKey}"`);
+                        if (subcatKey.startsWith('koshat-')) {
+                            mainCategory = 'كوشات';
+                            originalCategory = 'koshat';
+                        } else if (subcatKey.startsWith('mirr-') || subcatKey.startsWith('mirror-')) {
+                            mainCategory = 'مرايا';
+                            originalCategory = 'mirr';
+                        } else if (subcatKey.startsWith('cake-')) {
+                            mainCategory = 'تورتات';
+                            originalCategory = 'cake';
+                        } else if (subcatKey.startsWith('other-')) {
+                            mainCategory = 'ديكورات متنوعة';
+                            originalCategory = 'other';
+                        } else if (subcatKey.startsWith('invitation-')) {
+                            mainCategory = 'دعوات وتوزيعات';
+                            originalCategory = 'invitations';
+                        }
+                        console.log(`🔍 Inferred main category: "${mainCategory}"`);
+                    }
+                }
+                
+                // استخدام الدالة المحسنة لترجمة التصنيفات الفرعية
+                const translatedSubcategories = translateSubcategories(product.subcategories, originalCategory);
+                console.log('🔍 Translated subcategories:', translatedSubcategories);
+                const subcategoryColors = ['bg-blue-500', 'bg-green-500', 'bg-pink-500', 'bg-purple-500', 'bg-yellow-500', 'bg-red-500'];
+                
+                console.log(`🔍 Final main category: "${mainCategory}"`);
+                console.log(`🔍 Final translated subcategories:`, translatedSubcategories);
+                
+                return `
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300" data-product-id="${product.id}">
+                        <div class="image-container">
+                            <img src="${product.imageUrl}" alt="${product.title}" class="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105 cursor-pointer" loading="lazy" onclick="viewProduct('${product.id}')">
+                            <div class="absolute top-3 right-3 flex flex-wrap gap-1">
+                                <!-- التصنيف الرئيسي -->
+                                <span class="category-badge bg-gray-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+                                    ${mainCategory}
+                                </span>
+                                <!-- التصنيفات الفرعية -->
+                                ${translatedSubcategories.length > 0 && translatedSubcategories[0] !== 'تصنيف فرعي غير محدد' ? 
+                                    translatedSubcategories.slice(0, 2).map((name, index) => `
+                                        <span class="category-badge ${subcategoryColors[index % subcategoryColors.length]} text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+                                            ${name}
+                                        </span>
+                                    `).join('') : 
+                                    `<span class="category-badge bg-gray-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+                                        تصنيف فرعي عام
+                                    </span>`
+                                }
+                            </div>
+                            <!-- أيقونة إزالة من المفضلة -->
+                            <div class="absolute top-3 left-3">
+                                <button class="favorite-btn bg-white rounded-full p-2 shadow-lg hover:bg-red-50 transition-all duration-200" onclick="removeFromFavorites(event, '${product.id}')">
+                                    <svg class="w-5 h-5 text-red-500 fill-current" viewBox="0 0 24 24">
+                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="mb-2 flex flex-wrap gap-1">
+                                <!-- التصنيف الرئيسي -->
+                                <span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">
+                                    ${mainCategory}
+                                </span>
+                                <!-- التصنيفات الفرعية -->
+                                ${translatedSubcategories.length > 0 && translatedSubcategories[0] !== 'تصنيف فرعي غير محدد' && translatedSubcategories[0] !== 'تصنيف فرعي عام' ? 
+                                    translatedSubcategories.slice(0, 3).map((name, index) => {
+                                        const color = subcategoryColors[index % subcategoryColors.length];
+                                        const bgColor = color.replace('bg-', 'bg-').replace('-500', '-100');
+                                        const textColor = color.replace('bg-', 'text-').replace('-500', '-800');
+                                        return `
+                                            <span class="inline-block ${bgColor} ${textColor} text-xs px-2 py-1 rounded-full">
+                                                ${name}
+                                            </span>
+                                        `;
+                                    }).join('') : 
+                                    `<span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">
+                                        تصنيف فرعي عام
+                                    </span>`
+                                }
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">${product.title}</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="gold-text font-bold text-lg">
+                                    ${product.price > 0 ? product.price + ' ج.م' : 'السعر عند الطلب'}
+                                </span>
+                                <div class="flex flex-col items-end gap-1">
+                                    ${product.governorate ? `<span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">${product.governorate}</span>` : ''}
+                                    ${product.cities && product.cities.trim() !== '' && product.cities !== 'جميع المدن' ? `<span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">${product.cities.split(',')[0].trim()}</span>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // إزالة منتج من المفضلة
+        function removeFromFavorites(event, productId) {
+            event.stopPropagation();
+            
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const updatedFavorites = favorites.filter(item => item.id !== productId);
+            
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+            
+            // إرسال حدث مخصص لضمان التزامن مع الصفحات الأخرى
+            window.dispatchEvent(new CustomEvent('favoritesChanged', {
+                detail: { favorites: updatedFavorites }
+            }));
+            
+            // عرض إشعار
+            showNotification('تم إزالة المنتج من المفضلة', 'info');
+            
+            // إعادة عرض المفضلة
+            displayFavorites();
+        }
+
+        // عرض إشعار
+        function showNotification(message, type = 'info') {
+            // إزالة الإشعارات السابقة
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            const notification = document.createElement('div');
+            notification.className = `notification fixed top-4 left-4 z-50 px-4 py-2 rounded-lg shadow-lg text-white text-sm font-medium transform transition-all duration-300 translate-x-0`;
+            
+            // تحديد لون الإشعار حسب النوع
+            if (type === 'success') {
+                notification.style.backgroundColor = '#10b981'; // أخضر
+            } else if (type === 'error') {
+                notification.style.backgroundColor = '#ef4444'; // أحمر
+            } else {
+                notification.style.backgroundColor = '#3b82f6'; // أزرق
+            }
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            // إخفاء الإشعار بعد 3 ثوان
+            setTimeout(() => {
+                notification.style.transform = 'translateX(-100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // عرض تفاصيل المنتج
+        function viewProduct(productId) {
+            window.location.href = `product-details.html?id=${productId}`;
+        }
+
+        // تحسين بيانات المفضلة المحفوظة
+        function updateFavoritesData() {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            let updated = false;
+            
+            const updatedFavorites = favorites.map(product => {
+                let updatedProduct = { ...product };
+                
+                // التأكد من وجود التصنيف الرئيسي
+                if (!updatedProduct.category && updatedProduct.subcategories) {
+                    const subcat = Array.isArray(updatedProduct.subcategories) 
+                        ? updatedProduct.subcategories[0] 
+                        : updatedProduct.subcategories.split(',')[0];
+                    
+                    if (subcat) {
+                        const subcatKey = subcat.trim();
+                        if (subcatKey.startsWith('koshat-')) {
+                            updatedProduct.category = 'koshat';
+                            updated = true;
+                        } else if (subcatKey.startsWith('mirr-') || subcatKey.startsWith('mirror-')) {
+                            updatedProduct.category = 'mirr';
+                            updated = true;
+                        } else if (subcatKey.startsWith('cake-')) {
+                            updatedProduct.category = 'cake';
+                            updated = true;
+                        } else if (subcatKey.startsWith('other-')) {
+                            updatedProduct.category = 'other';
+                            updated = true;
+                        } else if (subcatKey.startsWith('invitation-')) {
+                            updatedProduct.category = 'invitations';
+                            updated = true;
+                        }
+                    }
+                }
+                
+                // التأكد من تنسيق التصنيفات الفرعية
+                if (updatedProduct.subcategories && typeof updatedProduct.subcategories === 'string') {
+                    updatedProduct.subcategories = updatedProduct.subcategories.split(',').map(s => s.trim());
+                    updated = true;
+                }
+                
+                return updatedProduct;
+            });
+            
+            if (updated) {
+                localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+                console.log('✅ Updated favorites data with missing categories');
+            }
+        }
+
+        // عرض المفضلة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            updateFavoritesData(); // تحسين البيانات أولاً
+            displayFavorites();
+        });
+
+        // مراقبة التغييرات في Local Storage
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'favorites') {
+                displayFavorites();
+            }
+        });
+        
+        // مستمع للحدث المخصص لضمان التزامن
+        window.addEventListener('favoritesChanged', function(e) {
+            console.log('🔄 Favorites changed via custom event, updating favorites display...');
+            displayFavorites();
+        });
+    </script>
+
+    <!-- ملف تحسين التمرير -->
+    <script src="../../js/features/scroll-optimization.js?v=2025-08-22-1" defer></script>
+    
+    <!-- Floating Add Product Button -->
+    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
+        <a href="add-product-request.html" class="inline-flex items-center justify-center text-white px-6 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-semibold text-lg" style="background: #845FCE;">
+            <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            أضف منتجك
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">زِينَة</h3>
+                    <p class="text-gray-300 text-sm">منصة متخصصة في خدمات الخطوبة والمناسبات</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="../../index.html" class="hover:text-white transition-colors">الرئيسية</a></li>
+                        <li><a href="../public/about-us.html" class="hover:text-white transition-colors">من نحن</a></li>
+                        <li><a href="../public/contact-us.html" class="hover:text-white transition-colors">اتصل بنا</a></li>
+                        <li><a href="../public/advertise-with-us.html" class="text-yellow-400 hover:text-yellow-300 font-medium">⭐ أضف إعلانك</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">السياسات</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="../../legal/privacy-policy.html" class="hover:text-white transition-colors">سياسة الخصوصية</a></li>
+                        <li><a href="../../legal/terms-of-use.html" class="hover:text-white transition-colors">شروط الاستخدام</a></li>
+                        <li><a href="../../legal/cookies-policy.html" class="hover:text-white transition-colors">سياسة الكوكيز</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">تواصل معنا</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="tel:+201016436007" class="hover:text-white transition-colors">📞 01016436007</a></li>
+                        <li><a href="https://www.facebook.com/share/1BCEhAV89y/?mibextid=wwXIfr" target="_blank" class="hover:text-white transition-colors">📘 فيسبوك</a></li>
+                        <li><a href="https://www.instagram.com/zeina.eg_?igsh=MXg4bzNqd213Z3IyaQ==" target="_blank" class="hover:text-white transition-colors">📷 إنستغرام</a></li>
+                        <li><a href="https://wa.me/201016436007" target="_blank" class="hover:text-white transition-colors">📱 واتساب</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8">
+                <div class="text-center text-sm text-gray-300 mb-4">
+                    <p>&copy; 2024 زِينَة. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="bg-gray-700 rounded-lg p-4 text-center">
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        تنبيه قانوني: يقتصر دور الموقع على عرض المنتجات وربط الأطراف، ولا يشارك في البيع أو الدفع أو التوصيل. لا تتحمل إدارة الموقع أي مسؤولية عن الاتفاقات أو المعاملات التي تتم بين المستخدمين.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+

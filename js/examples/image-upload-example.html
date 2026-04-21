@@ -1,0 +1,577 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ù…Ø«Ø§Ù„ Ø¹Ù„Ù‰ Ø±ÙØ¹ Ø§Ù„ØµÙˆØ± Ø§Ù„Ù…ØªÙ‚Ø¯Ù…</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../config/supabase-config.js"></script>
+    <script src="../services/advanced-image-upload-service.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .upload-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .upload-area:hover {
+            border-color: #845FCE;
+            background-color: #f9f9ff;
+        }
+
+        .upload-area.dragover {
+            border-color: #845FCE;
+            background-color: #f0f0ff;
+        }
+
+        .btn {
+            background-color: #845FCE;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background-color: #6b4ba8;
+        }
+
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .progress-container {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #845FCE;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .preview-item {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .stats {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ù…Ø«Ø§Ù„ Ø¹Ù„Ù‰ Ø±ÙØ¹ Ø§Ù„ØµÙˆØ± Ø§Ù„Ù…ØªÙ‚Ø¯Ù…</h1>
+
+    <div class="upload-container">
+        <h2>Ø±ÙØ¹ ØµÙˆØ±Ø© ÙˆØ§Ø­Ø¯Ø©</h2>
+
+        <div class="upload-area" id="singleUploadArea">
+            <div>
+                <p>Ø§Ø¶ØºØ· Ù‡Ù†Ø§ Ø£Ùˆ Ø§Ø³Ø­Ø¨ Ø§Ù„ØµÙˆØ±Ø© Ù„Ù„Ø±ÙØ¹</p>
+                <p style="font-size: 14px; color: #666;">Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰: 1MB - Ø³ÙŠØªÙ… Ø¶ØºØ· Ø§Ù„ØµÙˆØ± Ø§Ù„ÙƒØ¨ÙŠØ±Ø© ØªÙ„Ù‚Ø§Ø¦ÙŠØ§Ù‹</p>
+            </div>
+            <input type="file" id="singleFileInput" class="file-input" accept="image/*">
+        </div>
+
+        <button class="btn" id="uploadSingleBtn" disabled>Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±Ø©</button>
+
+        <div class="progress-container" id="singleProgress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="singleProgressFill"></div>
+            </div>
+            <p id="singleProgressText">Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø±ÙØ¹...</p>
+        </div>
+
+        <div class="results" id="singleResults"></div>
+    </div>
+
+    <div class="upload-container">
+        <h2>Ø±ÙØ¹ ØµÙˆØ± Ù…ØªØ¹Ø¯Ø¯Ø©</h2>
+
+        <div class="upload-area" id="multiUploadArea">
+            <div>
+                <p>Ø§Ø¶ØºØ· Ù‡Ù†Ø§ Ø£Ùˆ Ø§Ø³Ø­Ø¨ Ø§Ù„ØµÙˆØ± Ù„Ù„Ø±ÙØ¹</p>
+                <p style="font-size: 14px; color: #666;">ÙŠÙ…ÙƒÙ† Ø±ÙØ¹ Ø¹Ø¯Ø© ØµÙˆØ± - Ø³ÙŠØªÙ… Ù…Ø¹Ø§Ù„Ø¬Ø© ÙƒÙ„ ØµÙˆØ±Ø© Ø¹Ù„Ù‰ Ø­Ø¯Ø©</p>
+            </div>
+            <input type="file" id="multiFileInput" class="file-input" accept="image/*" multiple>
+        </div>
+
+        <button class="btn" id="uploadMultiBtn" disabled>Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±</button>
+
+        <div class="progress-container" id="multiProgress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="multiProgressFill"></div>
+            </div>
+            <p id="multiProgressText">Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø±ÙØ¹...</p>
+        </div>
+
+        <div class="results" id="multiResults"></div>
+    </div>
+
+    <script>
+        // Initialize the service
+        let imageUploadService = null;
+
+        // Wait for DOM and services to load
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('ðŸš€ Initializing image upload example...');
+
+            // Initialize the advanced image upload service with optimized settings
+            imageUploadService = new AdvancedImageUploadService({
+                maxFileSize: 1024 * 1024, // 1MB
+                maxWidth: 1200,
+                maxHeight: 1200,
+                quality: 0.85, // Higher quality for better balance
+                alwaysCompress: true, // Always compress images
+                folderPath: 'test_uploads' // Use test folder
+            });
+
+            // Setup single file upload
+            setupSingleFileUpload();
+
+            // Setup multi file upload
+            setupMultiFileUpload();
+
+            console.log('âœ… Image upload example initialized with compression enabled');
+
+            // Add info about the service
+            addServiceInfo();
+        });
+
+        function addServiceInfo() {
+            const infoDiv = document.createElement('div');
+            infoDiv.style.cssText = `
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 20px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                text-align: center;
+            `;
+
+            infoDiv.innerHTML = `
+                <h2>ðŸ—œï¸ Ø®Ø¯Ù…Ø© Ø±ÙØ¹ Ø§Ù„ØµÙˆØ± Ø§Ù„Ù…ØªÙ‚Ø¯Ù…Ø©</h2>
+                <p><strong>Ø§Ù„Ù…ÙŠØ²Ø§Øª:</strong></p>
+                <ul style="text-align: right; display: inline-block;">
+                    <li>âœ… Ø¶ØºØ· ØªÙ„Ù‚Ø§Ø¦ÙŠ Ù„Ù„ØµÙˆØ± Ø§Ù„ÙƒØ¨ÙŠØ±Ø©</li>
+                    <li>âœ… ØªØµØºÙŠØ± Ø§Ù„Ø£Ø¨Ø¹Ø§Ø¯ Ù…Ø¹ Ø§Ù„Ø­ÙØ§Ø¸ Ø¹Ù„Ù‰ Ø§Ù„Ù†Ø³Ø¨Ø©</li>
+                    <li>âœ… Ø¯Ø¹Ù… Ø£Ø³Ù…Ø§Ø¡ Ù…Ù„ÙØ§Øª ÙØ±ÙŠØ¯Ø©</li>
+                    <li>âœ… Ù…Ø¹Ø§Ù„Ø¬Ø© Ø§Ù„Ø£Ø®Ø·Ø§Ø¡ Ø§Ù„Ø´Ø§Ù…Ù„Ø©</li>
+                    <li>âœ… Ø¹Ø±Ø¶ Ø¥Ø­ØµØ§Ø¦ÙŠØ§Øª Ù…ÙØµÙ„Ø©</li>
+                </ul>
+                <p><strong>Ø§Ù„Ø­Ø¯ÙˆØ¯:</strong> 1MB ÙƒØ­Ø¯ Ø£Ù‚ØµÙ‰ â€¢ 1200x1200 Ø¨ÙƒØ³Ù„ ÙƒØ­Ø¯ Ø£Ù‚ØµÙ‰</p>
+            `;
+
+            document.body.insertBefore(infoDiv, document.body.firstChild);
+        }
+
+        // Single file upload setup
+        function setupSingleFileUpload() {
+            const uploadArea = document.getElementById('singleUploadArea');
+            const fileInput = document.getElementById('singleFileInput');
+            const uploadBtn = document.getElementById('uploadSingleBtn');
+            const progressContainer = document.getElementById('singleProgress');
+            const progressFill = document.getElementById('singleProgressFill');
+            const progressText = document.getElementById('singleProgressText');
+            const results = document.getElementById('singleResults');
+
+            let selectedFile = null;
+
+            // Click to select file
+            uploadArea.addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            // File selection
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    selectedFile = file;
+                    uploadBtn.disabled = false;
+                    uploadArea.innerHTML = `
+                        <div>
+                            <p>ØªÙ… Ø§Ø®ØªÙŠØ§Ø±: ${file.name}</p>
+                            <p style="font-size: 14px; color: #666;">Ø§Ù„Ø­Ø¬Ù…: ${formatBytes(file.size)}</p>
+                        </div>
+                    `;
+                }
+            });
+
+            // Drag and drop
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    selectedFile = file;
+                    uploadBtn.disabled = false;
+                    fileInput.files = e.dataTransfer.files; // Set files for input
+                    uploadArea.innerHTML = `
+                        <div>
+                            <p>ØªÙ… Ø¥Ø³Ù‚Ø§Ø·: ${file.name}</p>
+                            <p style="font-size: 14px; color: #666;">Ø§Ù„Ø­Ø¬Ù…: ${formatBytes(file.size)}</p>
+                        </div>
+                    `;
+                } else {
+                    showResult(results, 'ÙŠØ±Ø¬Ù‰ Ø¥Ø³Ù‚Ø§Ø· Ù…Ù„Ù ØµÙˆØ±Ø© ØµØ­ÙŠØ­', false);
+                }
+            });
+
+            // Upload button click
+            uploadBtn.addEventListener('click', async () => {
+                if (!selectedFile) return;
+
+                try {
+                    uploadBtn.disabled = true;
+                    progressContainer.style.display = 'block';
+                    progressFill.style.width = '0%';
+                    progressText.textContent = 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ù…Ø¹Ø§Ù„Ø¬Ø©...';
+                    results.style.display = 'none';
+
+                    // Update progress
+                    progressFill.style.width = '30%';
+                    progressText.textContent = 'Ø¬Ø§Ø±ÙŠ Ø¶ØºØ· Ø§Ù„ØµÙˆØ±Ø©...';
+
+                    // Upload the image
+                    const result = await imageUploadService.uploadImage(selectedFile);
+
+                    progressFill.style.width = '70%';
+                    progressText.textContent = 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø±ÙØ¹...';
+
+                    if (result.success) {
+                        progressFill.style.width = '100%';
+                        progressText.textContent = 'ØªÙ… Ø¨Ù†Ø¬Ø§Ø­!';
+
+                        // Show success result
+                        results.className = 'results success';
+                        results.style.display = 'block';
+                        results.innerHTML = `
+                            <h3>âœ… ØªÙ… Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±Ø© Ø¨Ù†Ø¬Ø§Ø­!</h3>
+                            <p><strong>Ø§Ù„Ø±Ø§Ø¨Ø· Ø§Ù„Ø¹Ø§Ù…:</strong> <a href="${result.data.url}" target="_blank">${result.data.url}</a></p>
+                            <div class="stats">
+                                <p><strong>ðŸ“Š Ø¥Ø­ØµØ§Ø¦ÙŠØ§Øª Ø§Ù„Ù…Ø¹Ø§Ù„Ø¬Ø©:</strong></p>
+                                <ul>
+                                    <li>ðŸ“ Ø§Ù„Ø§Ø³Ù… Ø§Ù„Ø£ØµÙ„ÙŠ: ${result.data.originalName}</li>
+                                    <li>ðŸ“ Ø§Ù„Ø­Ø¬Ù… Ø§Ù„Ø£ØµÙ„ÙŠ: <strong>${formatBytes(result.data.originalSize)}</strong></li>
+                                    <li>ðŸ—œï¸ Ø§Ù„Ø­Ø¬Ù… Ø¨Ø¹Ø¯ Ø§Ù„Ù…Ø¹Ø§Ù„Ø¬Ø©: <strong>${formatBytes(result.data.processedSize)}</strong></li>
+                                    <li>ðŸ“‰ Ù†Ø³Ø¨Ø© Ø§Ù„ØªÙ‚Ù„ÙŠÙ„: <strong>${((1 - result.data.processedSize / result.data.originalSize) * 100).toFixed(1)}%</strong></li>
+                                    <li>âš™ï¸ ØªÙ… Ø§Ù„Ù…Ø¹Ø§Ù„Ø¬Ø©: ${result.data.wasProcessed ? '<span style="color: green;">âœ… Ù†Ø¹Ù…</span>' : '<span style="color: orange;">âš ï¸ Ù„Ø§ (Ø§Ù„Ø­Ø¬Ù… Ù…Ù†Ø§Ø³Ø¨)</span>'}</li>
+                                    <li>ðŸ’¾ ØªÙˆÙÙŠØ± Ø§Ù„Ù…Ø³Ø§Ø­Ø©: <strong>${formatBytes(result.data.originalSize - result.data.processedSize)}</strong></li>
+                                </ul>
+                            </div>
+                            <img src="${result.data.url}" alt="Uploaded image" style="max-width: 300px; margin-top: 10px; border-radius: 5px;">
+                        `;
+
+                        // Reset form
+                        resetSingleUpload();
+                    } else {
+                        showResult(results, `ÙØ´Ù„ ÙÙŠ Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±Ø©: ${result.error}`, false);
+                        resetSingleUpload();
+                    }
+
+                } catch (error) {
+                    console.error('Upload error:', error);
+                    console.error('Stack trace:', error.stack);
+                    showResult(results, `Ø®Ø·Ø£ ÙÙŠ Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±Ø©: ${error.message}`, false);
+                    resetSingleUpload();
+                }
+            });
+
+            function resetSingleUpload() {
+                selectedFile = null;
+                uploadBtn.disabled = true;
+                progressContainer.style.display = 'none';
+                uploadArea.innerHTML = `
+                    <div>
+                        <p>Ø§Ø¶ØºØ· Ù‡Ù†Ø§ Ø£Ùˆ Ø§Ø³Ø­Ø¨ Ø§Ù„ØµÙˆØ±Ø© Ù„Ù„Ø±ÙØ¹</p>
+                        <p style="font-size: 14px; color: #666;">Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰: 1MB - Ø³ÙŠØªÙ… Ø¶ØºØ· Ø§Ù„ØµÙˆØ± Ø§Ù„ÙƒØ¨ÙŠØ±Ø© ØªÙ„Ù‚Ø§Ø¦ÙŠØ§Ù‹</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Multi file upload setup
+        function setupMultiFileUpload() {
+            const uploadArea = document.getElementById('multiUploadArea');
+            const fileInput = document.getElementById('multiFileInput');
+            const uploadBtn = document.getElementById('uploadMultiBtn');
+            const progressContainer = document.getElementById('multiProgress');
+            const progressFill = document.getElementById('multiProgressFill');
+            const progressText = document.getElementById('multiProgressText');
+            const results = document.getElementById('multiResults');
+
+            let selectedFiles = [];
+
+            // Click to select files
+            uploadArea.addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            // File selection
+            fileInput.addEventListener('change', (e) => {
+                const files = Array.from(e.target.files);
+                if (files.length > 0) {
+                    selectedFiles = files;
+                    uploadBtn.disabled = false;
+                    updateMultiUploadArea(files);
+                }
+            });
+
+            // Drag and drop
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+
+                const files = Array.from(e.dataTransfer.files).filter(file => file.type.startsWith('image/'));
+                if (files.length > 0) {
+                    selectedFiles = files;
+                    uploadBtn.disabled = false;
+                    fileInput.files = e.dataTransfer.files; // Set files for input
+                    updateMultiUploadArea(files);
+                } else {
+                    showResult(results, 'ÙŠØ±Ø¬Ù‰ Ø¥Ø³Ù‚Ø§Ø· Ù…Ù„ÙØ§Øª ØµÙˆØ± ØµØ­ÙŠØ­Ø© ÙÙ‚Ø·', false);
+                }
+            });
+
+            function updateMultiUploadArea(files) {
+                const totalSize = files.reduce((sum, file) => sum + file.size, 0);
+                uploadArea.innerHTML = `
+                    <div>
+                        <p>ØªÙ… Ø§Ø®ØªÙŠØ§Ø± ${files.length} ØµÙˆØ±Ø©</p>
+                        <p style="font-size: 14px; color: #666;">Ø§Ù„Ø­Ø¬Ù… Ø§Ù„Ø¥Ø¬Ù…Ø§Ù„ÙŠ: ${formatBytes(totalSize)}</p>
+                        <div class="image-preview" id="multiPreview">
+                            ${files.map((file, index) => `
+                                <div class="preview-item">
+                                    <img src="${URL.createObjectURL(file)}" alt="${file.name}">
+                                    <button class="remove-btn" onclick="removeFile(${index})">Ã—</button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Remove file from multi upload
+            window.removeFile = (index) => {
+                selectedFiles.splice(index, 1);
+                if (selectedFiles.length === 0) {
+                    uploadBtn.disabled = true;
+                    uploadArea.innerHTML = `
+                        <div>
+                            <p>Ø§Ø¶ØºØ· Ù‡Ù†Ø§ Ø£Ùˆ Ø§Ø³Ø­Ø¨ Ø§Ù„ØµÙˆØ± Ù„Ù„Ø±ÙØ¹</p>
+                            <p style="font-size: 14px; color: #666;">ÙŠÙ…ÙƒÙ† Ø±ÙØ¹ Ø¹Ø¯Ø© ØµÙˆØ± - Ø³ÙŠØªÙ… Ù…Ø¹Ø§Ù„Ø¬Ø© ÙƒÙ„ ØµÙˆØ±Ø© Ø¹Ù„Ù‰ Ø­Ø¯Ø©</p>
+                        </div>
+                    `;
+                } else {
+                    updateMultiUploadArea(selectedFiles);
+                }
+            };
+
+            // Upload button click
+            uploadBtn.addEventListener('click', async () => {
+                if (selectedFiles.length === 0) return;
+
+                try {
+                    uploadBtn.disabled = true;
+                    progressContainer.style.display = 'block';
+                    progressFill.style.width = '0%';
+                    progressText.textContent = `Ø¬Ø§Ø±ÙŠ Ù…Ø¹Ø§Ù„Ø¬Ø© ${selectedFiles.length} ØµÙˆØ±Ø©...`;
+                    results.style.display = 'none';
+
+                    // Upload the images
+                    const result = await imageUploadService.uploadImages(selectedFiles);
+
+                    if (result.success) {
+                        progressFill.style.width = '100%';
+                        progressText.textContent = 'ØªÙ… Ø¨Ù†Ø¬Ø§Ø­!';
+
+                        // Show success result
+                        results.className = 'results success';
+                        results.style.display = 'block';
+                        results.innerHTML = `
+                            <h3>âœ… ØªÙ… Ø±ÙØ¹ ${result.data.successCount} Ù…Ù† ${result.data.totalFiles} ØµÙˆØ±Ø© Ø¨Ù†Ø¬Ø§Ø­!</h3>
+                            ${result.data.errors ? `<p style="color: #721c24;">ÙØ´Ù„ ÙÙŠ ${result.data.errorCount} ØµÙˆØ±Ø©</p>` : ''}
+                            <div class="stats">
+                                <p><strong>ðŸ“Š Ù…Ù„Ø®Øµ Ø§Ù„Ø±ÙØ¹:</strong></p>
+                                <ul>
+                                    <li>ðŸ“¤ Ø§Ù„Ø¹Ø¯Ø¯ Ø§Ù„Ù…Ø±ÙÙˆØ¹: ${result.data.successCount} Ù…Ù† ${result.data.totalFiles}</li>
+                                    <li>ðŸ’¾ Ø¥Ø¬Ù…Ø§Ù„ÙŠ ØªÙˆÙÙŠØ± Ø§Ù„Ù…Ø³Ø§Ø­Ø©: ${formatBytes(result.data.uploadedImages.reduce((sum, img) => sum + (img.originalSize - img.processedSize), 0))}</li>
+                                    <li>ðŸ“ˆ Ù…ØªÙˆØ³Ø· Ù†Ø³Ø¨Ø© Ø§Ù„ØªÙ‚Ù„ÙŠÙ„: ${((result.data.uploadedImages.reduce((sum, img) => sum + (1 - img.processedSize / img.originalSize), 0) / result.data.uploadedImages.length) * 100).toFixed(1)}%</li>
+                                </ul>
+
+                                <p><strong>ðŸ–¼ï¸ ØªÙØ§ØµÙŠÙ„ Ø§Ù„ØµÙˆØ±:</strong></p>
+                                ${result.data.uploadedImages.map((img, index) => `
+                                    <div style="margin-bottom: 10px; padding: 10px; background: #f8f9fa; border-radius: 5px;">
+                                        <p><strong>Ø§Ù„ØµÙˆØ±Ø© ${index + 1}:</strong> ${img.originalName}</p>
+                                        <p>ðŸ“ Ø§Ù„Ø£ØµÙ„ÙŠ: ${formatBytes(img.originalSize)} | ðŸ—œï¸ Ø§Ù„Ù…Ø¹Ø§Ù„Ø¬: ${formatBytes(img.processedSize)} | ðŸ“‰ Ø§Ù„ØªÙ‚Ù„ÙŠÙ„: ${((1 - img.processedSize / img.originalSize) * 100).toFixed(1)}%</p>
+                                        <p>ðŸ”— <a href="${img.url}" target="_blank">Ø¹Ø±Ø¶ Ø§Ù„ØµÙˆØ±Ø©</a></p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+
+                        // Reset form
+                        resetMultiUpload();
+                    } else {
+                        showResult(results, `ÙØ´Ù„ ÙÙŠ Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±: ${result.error}`, false);
+                        resetMultiUpload();
+                    }
+
+                } catch (error) {
+                    console.error('Upload error:', error);
+                    console.error('Stack trace:', error.stack);
+                    showResult(results, `Ø®Ø·Ø£ ÙÙŠ Ø±ÙØ¹ Ø§Ù„ØµÙˆØ±: ${error.message}`, false);
+                    resetMultiUpload();
+                }
+            });
+
+            function resetMultiUpload() {
+                selectedFiles = [];
+                uploadBtn.disabled = true;
+                progressContainer.style.display = 'none';
+                uploadArea.innerHTML = `
+                    <div>
+                        <p>Ø§Ø¶ØºØ· Ù‡Ù†Ø§ Ø£Ùˆ Ø§Ø³Ø­Ø¨ Ø§Ù„ØµÙˆØ± Ù„Ù„Ø±ÙØ¹</p>
+                        <p style="font-size: 14px; color: #666;">ÙŠÙ…ÙƒÙ† Ø±ÙØ¹ Ø¹Ø¯Ø© ØµÙˆØ± - Ø³ÙŠØªÙ… Ù…Ø¹Ø§Ù„Ø¬Ø© ÙƒÙ„ ØµÙˆØ±Ø© Ø¹Ù„Ù‰ Ø­Ø¯Ø©</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Utility functions
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function showResult(element, message, isSuccess) {
+            element.className = `results ${isSuccess ? 'success' : 'error'}`;
+            element.style.display = 'block';
+            element.innerHTML = `<p>${message}</p>`;
+        }
+
+        // Global error handler
+        window.addEventListener('error', (e) => {
+            console.error('Global error:', e.error);
+            showResult(document.getElementById('singleResults'), `Ø®Ø·Ø£ Ø¹Ø§Ù…: ${e.error.message}`, false);
+        });
+    </script>
+</body>
+</html>
+
+
+

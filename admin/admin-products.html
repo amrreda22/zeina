@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H3XBCDY4W0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-H3XBCDY4W0');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…Ù†ØªØ¬Ø§Øª - Ù„ÙˆØ­Ø© Ø§Ù„Ø¥Ø¯Ø§Ø±Ø©</title>
+    <link rel="icon" type="image/png" href="../assets/images/zeina.jpeg">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" as="script">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config/supabase-config.js?v=2025-08-22-1"></script>
+    <script src="../js/security/admin-security.js?v=2025-08-22-1"></script>
+    <script src="../js/services/product-service.js?v=2025-08-22-1"></script>
+    <script src="../js/services/cities-service.js?v=2025-08-22-1"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1994970196400389"
+     crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../assets/css/admin/admin-products.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <h1>Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…Ù†ØªØ¬Ø§Øª</h1>
+            <div class="nav-buttons">
+                <a href="admin-dashboard.html" class="nav-btn">Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…</a>
+                <a href="admin-users.html" class="nav-btn">Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ†</a>
+                <a href="add-product.html" class="nav-btn">Ø¥Ø¶Ø§ÙØ© Ù…Ù†ØªØ¬</a>
+                <button onclick="handleLogout()" class="nav-btn">ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h2 class="page-title">Ø¥Ø¯Ø§Ø±Ø© Ø¬Ù…ÙŠØ¹ Ø§Ù„Ù…Ù†ØªØ¬Ø§Øª</h2>
+            <p class="page-description">Ø¹Ø±Ø¶ ÙˆØªØ¹Ø¯ÙŠÙ„ ÙˆØ­Ø°Ù Ø¬Ù…ÙŠØ¹ Ø§Ù„Ù…Ù†ØªØ¬Ø§Øª ÙÙŠ Ø§Ù„Ù†Ø¸Ø§Ù…</p>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-icon">ðŸ“¦</div>
+                <div class="stat-number" id="totalProducts">0</div>
+                <div class="stat-label">Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ø§Ù„Ù…Ù†ØªØ¬Ø§Øª</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">ðŸ‘¥</div>
+                <div class="stat-number" id="totalUsers">0</div>
+                <div class="stat-label">Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ†</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">ðŸ“Š</div>
+                <div class="stat-number" id="activeProducts">0</div>
+                <div class="stat-label">Ø§Ù„Ù…Ù†ØªØ¬Ø§Øª Ø§Ù„Ù†Ø´Ø·Ø©</div>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-buttons">
+                <button class="filter-btn" data-category="koshat">
+                    <span class="count" id="count-koshat">0</span>
+                    ÙƒÙˆØ´Ø§Øª
+                </button>
+                <button class="filter-btn" data-category="cake">
+                    <span class="count" id="count-cake">0</span>
+                    ØªÙˆØ±ØªØ©
+                </button>
+                <button class="filter-btn" data-category="mirr">
+                    <span class="count" id="count-mirr">0</span>
+                    Ù…Ø±Ø§ÙŠØ§
+                </button>
+                <button class="filter-btn" data-category="other">
+                    <span class="count" id="count-other">0</span>
+                    Ø£Ø®Ø±Ù‰
+                </button>
+                <button class="filter-btn" data-category="invitations">
+                    <span class="count" id="count-invitations">0</span>
+                    Ø¯Ø¹ÙˆØ§Øª ÙˆØªÙˆØ²ÙŠØ¹Ø§Øª
+                </button>
+                <button class="filter-btn" data-category="flowerbouquets">
+                    <span class="count" id="count-flowerbouquets">0</span>
+                    Ø¨ÙˆÙƒÙŠÙ‡Ø§Øª Ø§Ù„ÙˆØ±Ø¯
+                </button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="loading-state" class="loading">
+            <div style="text-align: center; padding: 60px 20px;">
+                <div style="font-size: 3rem; margin-bottom: 20px;">â³</div>
+                <h3 style="color: #374151; margin-bottom: 15px;">Ø¬Ø§Ø±ÙŠ ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ù…Ù†ØªØ¬Ø§Øª...</h3>
+                <p style="color: #6b7280;">ÙŠØ±Ø¬Ù‰ Ø§Ù„Ø§Ù†ØªØ¸Ø§Ø± Ù‚Ù„ÙŠÙ„Ø§Ù‹</p>
+            </div>
+        </div>
+
+        <div id="empty-state" class="no-products-message" style="display: none;">
+            <div class="no-products-icon">ðŸ“¦</div>
+            <h3>Ù„Ø§ ØªÙˆØ¬Ø¯ Ù…Ù†ØªØ¬Ø§Øª Ù„Ø¹Ø±Ø¶Ù‡Ø§</h3>
+            <p>Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ù…Ù†ØªØ¬Ø§Øª ÙÙŠ Ù‡Ø°Ù‡ Ø§Ù„ÙØ¦Ø©. ÙŠÙ…ÙƒÙ†Ùƒ Ø¥Ø¶Ø§ÙØ© Ù…Ù†ØªØ¬ Ø¬Ø¯ÙŠØ¯ Ø£Ùˆ ØªØºÙŠÙŠØ± Ø§Ù„ÙÙ„ØªØ± Ø§Ù„Ù…Ø­Ø¯Ø¯.</p>
+            <a href="add-product.html" class="add-product-btn">
+                <span>âž•</span>
+                Ø¥Ø¶Ø§ÙØ© Ù…Ù†ØªØ¬ Ø¬Ø¯ÙŠØ¯
+            </a>
+        </div>
+
+        <div id="products-container" style="display: none;">
+            <div id="products-grid" class="products-grid">
+                <!-- Products will be loaded here -->
+            </div>
+            
+            <!-- Pagination Controls -->
+            <div id="pagination-container" class="pagination-container" style="display: none;">
+                <div class="pagination-info">
+                    <span id="pagination-info">Ø¹Ø±Ø¶ 1-15 Ù…Ù† 0 Ù…Ù†ØªØ¬</span>
+                </div>
+                <div class="pagination-controls">
+                    <button id="prev-page" class="pagination-btn" onclick="goToPreviousPage()" disabled>
+                        â€¹ Ø§Ù„Ø³Ø§Ø¨Ù‚
+                    </button>
+                    <div id="page-numbers" class="page-numbers">
+                        <!-- Page numbers will be generated here -->
+                    </div>
+                    <button id="next-page" class="pagination-btn" onclick="goToNextPage()" disabled>
+                        Ø§Ù„ØªØ§Ù„ÙŠ â€º
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h3 style="margin: 0; font-size: 1.5em;">ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ù…Ù†ØªØ¬</h3>
+                <button onclick="closeEditModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #666; padding: 5px; min-width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">Ã—</button>
+            </div>
+            
+            <form id="editForm" style="display: grid; gap: 20px;">
+                <input type="hidden" id="edit-product-id">
+                <input type="hidden" id="edit-product-table">
+                
+                <!-- Product Details -->
+                <div style="display: grid; gap: 15px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">ÙˆØµÙ Ø§Ù„Ù…Ù†ØªØ¬</label>
+                        <textarea id="edit-description" rows="3" required style="width: 100%; padding: 10px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 14px;"></textarea>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Ø§Ù„Ø³Ø¹Ø± (Ø¬.Ù…)</label>
+                            <input type="number" id="edit-price" step="0.01" style="width: 100%; padding: 10px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 14px;">
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Ø§Ù„ÙØ¦Ø©</label>
+                            <select id="edit-category" required style="width: 100%; padding: 10px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 14px;">
+                                <option value="koshat">ÙƒÙˆØ´Ø§Øª</option>
+                                <option value="mirr">Ù…Ø±Ø§ÙŠØ§</option>
+                                <option value="cake">ØªÙˆØ±ØªØ©</option>
+                                <option value="other">Ø¯ÙŠÙƒÙˆØ±Ø§Øª Ù…ØªÙ†ÙˆØ¹Ø©</option>
+                                <option value="invitations">Ø¯Ø¹ÙˆØ§Øª ÙˆØªÙˆØ²ÙŠØ¹Ø§Øª</option>
+                        <option value="flowerbouquets">Ø¨ÙˆÙƒÙŠÙ‡Ø§Øª Ø§Ù„ÙˆØ±Ø¯</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Governorates and Subcategories -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Ø§Ù„Ù…Ø­Ø§ÙØ¸Ø§Øª</label>
+                        <div id="edit-governorate-checkboxes" style="max-height: 150px; overflow-y: auto; border: 2px solid #e1e5e9; border-radius: 8px; padding: 10px; background: white;">
+                            <!-- Ø³ÙŠØªÙ… ØªÙˆÙ„ÙŠØ¯ Ø§Ù„Ù…Ø­Ø§ÙØ¸Ø§Øª Ù‡Ù†Ø§ -->
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Ø§Ù„ØªØµÙ†ÙŠÙ Ø§Ù„ÙØ±Ø¹ÙŠ</label>
+                        <div id="edit-subcategory-checkboxes" style="max-height: 150px; overflow-y: auto; border: 2px solid #e1e5e9; border-radius: 8px; padding: 10px; background: white;">
+                            <!-- Ø³ÙŠØªÙ… ØªÙˆÙ„ÙŠØ¯ Ø§Ù„ØªØµÙ†ÙŠÙØ§Øª Ø§Ù„ÙØ±Ø¹ÙŠØ© Ù‡Ù†Ø§ -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ø§Ø®ØªÙŠØ§Ø± Ø§Ù„Ø£Ù„ÙˆØ§Ù† (Ù„Ù„Ø¨ÙˆÙƒÙŠÙ‡Ø§Øª ÙÙ‚Ø·) -->
+                <div id="edit-color-filter-section" style="display: none;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Ø£Ù„ÙˆØ§Ù† Ø§Ù„Ø¨ÙˆÙƒÙŠÙ‡</label>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 10px;">
+                        <button type="button" class="edit-product-color-option-simple" data-color="red">Ø£Ø­Ù…Ø±</button>
+                        <button type="button" class="edit-product-color-option-simple" data-color="pink">ÙˆØ±Ø¯ÙŠ</button>
+                        <button type="button" class="edit-product-color-option-simple" data-color="white">Ø£Ø¨ÙŠØ¶</button>
+                        <button type="button" class="edit-product-color-option-simple" data-color="yellow">Ø£ØµÙØ±</button>
+                        <button type="button" class="edit-product-color-option-simple" data-color="purple">Ø¨Ù†ÙØ³Ø¬ÙŠ</button>
+                        <button type="button" class="edit-product-color-option-simple" data-color="orange">Ø¨Ø±ØªÙ‚Ø§Ù„ÙŠ</button>
+                        <button type="button" class="edit-product-color-option-simple" data-color="blue">Ø£Ø²Ø±Ù‚</button>
+                        <button type="button" class="edit-product-color-option-simple" data-color="mixed">Ù…Ø®ØªÙ„Ø·</button>
+                    </div>
+                    <div id="edit-product-selected-colors-simple" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+                </div>
+                
+                <!-- Cities -->
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Ø§Ù„Ù…Ù†Ø§Ø·Ù‚/Ø§Ù„Ù…Ø¯Ù† Ø§Ù„Ù…ØªÙˆÙØ±Ø© (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)</label>
+                    <div id="edit-cities-container">
+                        <div class="cities-filter-container" style="position: relative; width: 100%; max-width: 400px; font-family: 'Tajawal', sans-serif;">
+                            <div class="cities-header" style="position: relative;">
+                                <div class="cities-trigger" id="edit-cities-trigger" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: white; border: 2px solid #e5e7eb; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; min-height: 48px;">
+                                    <div class="trigger-content" style="display: flex; align-items: center; gap: 8px; flex: 1;">
+                                        <svg class="location-icon" style="width: 20px; height: 20px; color: #6b7280; flex-shrink: 0;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                        <span class="trigger-text" style="color: #374151; font-weight: 500; flex: 1;">Ø§Ø®ØªØ± Ø§Ù„Ù…Ù†Ø§Ø·Ù‚/Ø§Ù„Ù…Ø¯Ù† (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)</span>
+                                        <span class="selected-count" id="edit-cities-selected-count" style="background: #3b82f6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; min-width: 20px; text-align: center; display: none;"></span>
+                                    </div>
+                                    <svg class="chevron-icon" style="width: 16px; height: 16px; color: #6b7280; transition: transform 0.3s ease; flex-shrink: 0;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6,9 12,15 18,9"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div class="cities-dropdown" id="edit-cities-dropdown" style="position: absolute; top: 100%; left: 0; right: 0; background: white; border: 2px solid #e5e7eb; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); z-index: 1000; margin-top: 4px; max-height: 400px; overflow: hidden;">
+                                <div class="dropdown-header" style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+                                    <div class="search-container" style="position: relative; margin-bottom: 12px;">
+                                        <svg class="search-icon" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: #9ca3af;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="11" cy="11" r="8"></circle>
+                                            <path d="m21 21-4.35-4.35"></path>
+                                        </svg>
+                                        <input type="text" id="edit-cities-search" placeholder="Ø§Ø¨Ø­Ø« Ø¹Ù† Ù…Ù†Ø·Ù‚Ø©..." style="width: 100%; padding: 8px 12px 8px 36px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.3s ease;">
+                                    </div>
+                                    <div class="actions" style="display: flex; gap: 8px;">
+                                        <button type="button" id="edit-select-all-cities-btn" style="padding: 6px 12px; background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 6px; font-size: 12px; color: #374151; cursor: pointer; transition: all 0.3s ease;">ØªØ­Ø¯ÙŠØ¯ Ø§Ù„ÙƒÙ„</button>
+                                        <button type="button" id="edit-clear-all-cities-btn" style="padding: 6px 12px; background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 6px; font-size: 12px; color: #374151; cursor: pointer; transition: all 0.3s ease;">Ø¥Ù„ØºØ§Ø¡ Ø§Ù„ÙƒÙ„</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="cities-list" id="edit-cities-list" style="max-height: 250px; overflow-y: auto; padding: 8px 0;">
+                                    <!-- Cities will be populated here -->
+                                </div>
+                                
+                                <div class="dropdown-footer" style="padding: 12px 16px; border-top: 1px solid #e5e7eb; background: #f9fafb;">
+                                    <button type="button" id="edit-apply-cities-filter" style="width: 100%; padding: 10px 16px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background-color 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12"></polyline>
+                                        </svg>
+                                        ØªØ·Ø¨ÙŠÙ‚ Ø§Ù„ÙÙ„ØªØ±
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="edit-selected-cities" class="selected-cities" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;"></div>
+                    </div>
+                    <p style="font-size: 12px; color: #6b7280; margin-top: 4px;">Ø§Ø®ØªØ± Ø§Ù„Ù…Ù†Ø§Ø·Ù‚ Ø£Ùˆ Ø§Ù„Ù…Ø¯Ù† Ø§Ù„Ù…ØªÙˆÙØ±Ø© Ø¯Ø§Ø®Ù„ Ø§Ù„Ù…Ø­Ø§ÙØ¸Ø§Øª Ø§Ù„Ù…Ø®ØªØ§Ø±Ø© (Ø§Ø®ØªÙŠØ§Ø±ÙŠ - ÙŠÙ…ÙƒÙ†Ùƒ ØªØ®Ø·ÙŠ Ù‡Ø°Ø§ Ø§Ù„Ø­Ù‚Ù„)</p>
+                </div>
+                
+                <!-- Contact Information -->
+                <div style="display: grid; gap: 15px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Ø±Ù‚Ù… Ø§Ù„ÙˆØ§ØªØ³Ø§Ø¨</label>
+                        <input type="tel" id="edit-whatsapp" style="width: 100%; padding: 10px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 14px;">
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Ø±Ø§Ø¨Ø· Ø§Ù„ÙÙŠØ³Ø¨ÙˆÙƒ (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)</label>
+                        <input type="url" id="edit-facebook" placeholder="https://facebook.com/..." style="width: 100%; padding: 10px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 14px;">
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Ø±Ø§Ø¨Ø· Ø§Ù„Ø¥Ù†Ø³ØªÙ‚Ø±Ø§Ù… (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)</label>
+                        <input type="text" id="edit-instagram" placeholder="https://instagram.com/username Ø£Ùˆ @username" style="width: 100%; padding: 10px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 14px;">
+                    </div>
+                </div>
+                
+                <!-- Current Images -->
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Ø§Ù„ØµÙˆØ± Ø§Ù„Ø­Ø§Ù„ÙŠØ©</label>
+                    <div class="image-sort-instructions-edit" style="margin-bottom: 15px; padding: 10px; background: #dbeafe; border: 1px solid #3b82f6; border-radius: 8px; display: flex; align-items: center; color: #1e40af; font-size: 14px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px; margin-left: 8px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                        </svg>
+                        Ø§Ø³Ø­Ø¨ Ø§Ù„ØµÙˆØ± Ù„ØªØ±ØªÙŠØ¨Ù‡Ø§ - Ø§Ù„ØµÙˆØ±Ø© Ø§Ù„Ø£ÙˆÙ„Ù‰ Ø³ØªÙƒÙˆÙ† Ø§Ù„ØµÙˆØ±Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©
+                    </div>
+                    <div id="current-images" style="display: flex; flex-wrap: wrap; gap: 10px; padding: 15px; background: #f8f9fa; border-radius: 8px; min-height: 60px;">
+                        <!-- Ø§Ù„ØµÙˆØ± Ø§Ù„Ø­Ø§Ù„ÙŠØ© Ø³ØªØ¸Ù‡Ø± Ù‡Ù†Ø§ -->
+                    </div>
+                </div>
+                
+                <!-- Add New Images -->
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Ø¥Ø¶Ø§ÙØ© ØµÙˆØ± Ø¬Ø¯ÙŠØ¯Ø©</label>
+                    <div id="image-upload-area" style="border: 2px dashed #d1d5db; border-radius: 8px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; min-height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <div style="font-size: 24px; color: #9ca3af; margin-bottom: 10px;">ðŸ“·</div>
+                        <p style="color: #6b7280; margin-bottom: 5px; font-size: 14px;">Ø§Ø³Ø­Ø¨ Ø§Ù„ØµÙˆØ± Ù‡Ù†Ø§ Ø£Ùˆ Ø§Ø¶ØºØ· Ù„Ù„Ø§Ø®ØªÙŠØ§Ø±</p>
+                        <p style="font-size: 12px; color: #9ca3af; text-align: center;">ÙŠÙ…ÙƒÙ†Ùƒ Ø§Ø®ØªÙŠØ§Ø± Ø£ÙƒØ«Ø± Ù…Ù† ØµÙˆØ±Ø© ÙÙŠ Ù†ÙØ³ Ø§Ù„ÙˆÙ‚Øª</p>
+                        <input type="file" id="new-images" multiple accept="image/*" style="display: none;">
+                    </div>
+                </div>
+                
+                <!-- Buttons -->
+                <div style="display: flex; gap: 15px; justify-content: flex-end; margin-top: 20px;">
+                    <button type="button" onclick="closeEditModal()" class="btn btn-edit">Ø¥Ù„ØºØ§Ø¡</button>
+                    <button type="submit" class="btn btn-view">Ø­ÙØ¸ Ø§Ù„ØªØºÙŠÙŠØ±Ø§Øª</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h3>ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø­Ø°Ù</h3>
+            <p>Ù‡Ù„ Ø£Ù†Øª Ù…ØªØ£ÙƒØ¯ Ù…Ù† Ø­Ø°Ù Ù‡Ø°Ø§ Ø§Ù„Ù…Ù†ØªØ¬ØŸ Ù„Ø§ ÙŠÙ…ÙƒÙ† Ø§Ù„ØªØ±Ø§Ø¬Ø¹ Ø¹Ù† Ù‡Ø°Ø§ Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡.</p>
+            <div class="modal-buttons">
+                <button class="btn btn-delete" onclick="confirmDelete()">Ø­Ø°Ù</button>
+                <button class="btn btn-edit" onclick="closeDeleteModal()">Ø¥Ù„ØºØ§Ø¡</button>
+            </div>
+        </div>
+    </div>
+
+        <script src="../js/pages/admin-products.main.js"></script>
+
+    <!-- Ù…Ù„Ù ØªØ­Ø³ÙŠÙ† Ø§Ù„ØªÙ…Ø±ÙŠØ± -->
+    <script src="../js/features/scroll-optimization.js?v=2025-08-22-1" defer></script>
+</body>
+</html> 
+
+

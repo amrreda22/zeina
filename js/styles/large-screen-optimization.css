@@ -1,0 +1,94 @@
+/* تحسينات الشاشات الكبيرة للبطاقات والصور */
+/* يطبق فقط على الشاشات بعرض 1200px أو أكثر */
+
+@media (min-width: 1200px) {
+    /* تحسينات البطاقات للشاشات الكبيرة - شكل عمودي */
+    .category-product-card,
+    .product-card {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    /* تحسينات الصور للشاشات الكبيرة */
+    .category-product-card img,
+    .product-card img,
+    .product-image {
+        width: 100%;
+        height: 400px; /* ارتفاع ثابت بين 380-440 بكسل */
+        object-fit: cover;
+        object-position: center;
+        aspect-ratio: 4/5; /* نسبة 4:5 للشكل العمودي */
+    }
+    
+    /* تحسينات حاويات الصور */
+    .product-card .image-container,
+    .product-image-container {
+        height: 400px !important; /* ارتفاع ثابت بين 380-440 بكسل */
+        aspect-ratio: 4/5; /* نسبة 4/5 للشكل العمودي */
+    }
+    
+    /* تحسينات معلومات البطاقة */
+    .category-product-info {
+        padding: 1.25rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .category-product-name {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 0.75rem;
+        -webkit-line-clamp: 3;
+    }
+    
+    .category-product-price {
+        font-size: 1.2rem;
+        margin-top: auto;
+    }
+    
+    /* تحسينات الشبكة للشاشات الكبيرة */
+    .categories-products-grid,
+    #koshat-products-grid,
+    #cake-products-grid,
+    #mirror-products-grid,
+    #other-products-grid,
+    #invitations-products-grid {
+        gap: 1.5rem;
+    }
+    
+    /* تحسينات البطاقات الإدارية */
+    .admin-product-card .product-image-container {
+        height: 400px !important;
+        aspect-ratio: 4/5;
+    }
+    
+    .admin-product-card .product-image {
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+/* تحسينات إضافية للشاشات الكبيرة جداً */
+@media (min-width: 1400px) {
+    .category-product-card img,
+    .product-card img,
+    .product-image,
+    .product-card .image-container,
+    .product-image-container {
+        height: 420px; /* ارتفاع أكبر قليلاً للشاشات الكبيرة جداً */
+    }
+}
+
+/* تحسينات للشاشات الكبيرة جداً */
+@media (min-width: 1600px) {
+    .category-product-card img,
+    .product-card img,
+    .product-image,
+    .product-card .image-container,
+    .product-image-container {
+        height: 440px; /* أقصى ارتفاع مسموح */
+    }
+}

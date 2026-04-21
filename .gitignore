@@ -1,0 +1,33 @@
+﻿# Dependencies and package managers
+node_modules/
+.pnpm-store/
+.npm/
+.yarn/
+
+# Build outputs and caches
+dist/
+build/
+out/
+.cache/
+coverage/
+.tmp/
+tmp/
+temp/
+
+# Logs
+*.log
+logs/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Tooling metadata not needed for public repo
+.cursor/
